@@ -15,3 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from stocklist import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('items/', views.item_list, name='item_list'),
+    path('item/<int:item_id>/', views.item_detail, name='item_detail')
+]

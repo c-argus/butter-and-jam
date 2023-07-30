@@ -5,12 +5,12 @@ from django.db import models
 # Model Item represents individual items
 # Model Quantity represents the quantity of each item
 
-from django.db import models
-
 
 class Item(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    objects = models.Manager()
 
     def __str__(self):
         return self.name
