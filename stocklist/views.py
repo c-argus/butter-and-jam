@@ -1,12 +1,13 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 # Create view to fetch data from the database
 
 from stocklist.models import Item
 
+
 def home(request):
-    
+
     context = {
         'message': 'Welcome to the homepage!',
     }
