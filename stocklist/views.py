@@ -5,6 +5,13 @@ from django.shortcuts import render,get_object_or_404
 
 from stocklist.models import Item
 
+def home(request):
+    
+    context = {
+        'message': 'Welcome to the homepage!',
+    }
+    return render(request, 'home.html', context)
+
 
 def item_list(request):
     items = Item.objects.all()
@@ -14,7 +21,3 @@ def item_list(request):
 def item_detail(request, item_id):
     item = get_object_or_404(Item, id=item_id)
     return render(request, 'item_detail.html', {'item': item})
-
-
-def home(request):
-    return render(request, 'home.html')
