@@ -30,7 +30,8 @@ SECRET_KEY = 'django-insecure-ww9zt(t3g%ms^h8+eym5s(3+mih-qgvopn9twsv_k!zu642(qu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-c-argus-butter-and-jam-0nno2e70bb.us2.codeanyapp.com']
+ALLOWED_HOSTS = [
+    'https://ckz8780-django-bandj-app-e5481c9f6f8d.herokuapp.com/']
 
 
 # Application definition
