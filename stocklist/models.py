@@ -21,4 +21,4 @@ class Item(models.Model):
         if self.quantity < reorder_threshold:
             return True
         else:
-            return: False
+            return: True
