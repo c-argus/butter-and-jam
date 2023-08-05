@@ -16,7 +16,6 @@ import os
 if os.path.isfile("env.py"):
     import env
 
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -88,8 +87,8 @@ WSGI_APPLICATION = 'django_bandj.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get(
-        "postgres://hndjoglt:vkJk_TWlAF0lko0PZCCySdTvz7rPCfC_@trumpet.db.elephantsql.com/hndjoglt"))
+    'default': os.environ.get(
+        "postgres://hndjoglt:vkJk_TWlAF0lko0PZCCySdTvz7rPCfC_@trumpet.db.elephantsql.com/hndjoglt")
 }
 
 # Password validation
