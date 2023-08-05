@@ -16,7 +16,6 @@ import os
 if os.path.isfile("env.py"):
     import env
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,8 +29,8 @@ SECRET_KEY = 'django-insecure-ww9zt(t3g%ms^h8+eym5s(3+mih-qgvopn9twsv_k!zu642(qu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'https://ckz8780-django-bandj-app-e5481c9f6f8d.herokuapp.com/']
+ALLOWED_HOSTS = ['8000-c-argus-butter-and-jam-0nno2e70bb.us2.codeanyapp.com',
+                 'https://ckz8780-django-bandj-app-e5481c9f6f8d.herokuapp.com/']
 
 
 # Application definition
@@ -88,8 +87,7 @@ WSGI_APPLICATION = 'django_bandj.wsgi.application'
 # }
 
 DATABASES = {
-    'default': os.environ.get(
-        "postgres://hndjoglt:vkJk_TWlAF0lko0PZCCySdTvz7rPCfC_@trumpet.db.elephantsql.com/hndjoglt")
+    'default': os.environ.get("DATABASE_URL")
 }
 
 # Password validation
