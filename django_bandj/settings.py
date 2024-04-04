@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-
-if os.path.isfile("env.py"):
+import dj_database_url
+if os.path.isfile('env.py'):
     import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-ww9zt(t3g%ms^h8+eym5s(3+mih-qgvopn9twsv_k!zu642(qu
 DEBUG = True
 
 ALLOWED_HOSTS = ['8000-c-argus-butter-and-jam-0nno2e70bb.us2.codeanyapp.com',
-                 'https://ckz8780-django-bandj-app-e5481c9f6f8d.herokuapp.com/']
+                 'https://ckz8780-django-bjcabare-app-8f8dee1752c3.herokuapp.com/']
 
 
 # Application definition
@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'django_bandj.wsgi.application'
 # }
 
 DATABASES = {
-    'default': os.environ.get("DATABASE_URL")
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 # Password validation
