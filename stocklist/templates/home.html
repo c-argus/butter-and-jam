@@ -36,6 +36,10 @@
               <td>{{ item.quantity }}</td>       <!-- Display item quantity -->
               <!-- Edit button -->
               <td><a href="{% url 'edit_item' item.id %}">Edit</a></td>
+              <td>
+                <a href="{% url 'toggle_item_status' item.id %}">Toggle</a> | 
+                <a href="{% url 'delete_item' item.id %}">Delete</a>
+              </td>
             </tr>
           {% endfor %}
         </tbody>
