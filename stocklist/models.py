@@ -12,7 +12,7 @@ class Item(models.Model):
     quantity = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return f"{self.name} (Price: {self.price}, Quantity: {self.quantity})"
+        return f"{self.name} (Price: €{self.price}, Quantity: {self.quantity})"
 
     def needs_reorder(self):
         reorder_threshold = 5

@@ -10,7 +10,7 @@
     <h1>Item List</h1>
     <ul>
         {% for item in items %}
-        <li>{{ item.name }}</li>
+        <li>{{ item.name }} - {{ item.price|currency:'EUR'|localized }}</li>
         {% endfor %}
     </ul>
 </body>
