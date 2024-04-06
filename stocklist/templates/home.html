@@ -5,16 +5,40 @@
   <head>
     <title>Butter and Jam?</title>
   </head>
-
-  <body>
+    <!-- Page title -->
     <h1>{{ welcome_message }}</h1>
+
+    <!-- Check if items are available -->
     {% if items %}
-      <ul>
-        {% for item in items %}
-          <li>Name: {{ item.name }}, Price: &euro;{{ item.price }}, Quantity: {{ item.quantity }}</li>
-        {% endfor %}
-      </ul>
+      <!-- Table to display item list -->
+      <table>
+        <!-- Table header section -->
+        <thead>
+          <!-- Table row for column headings -->
+          <tr>
+            <!-- Column headings -->
+            <th>Name</th>        <!-- Name column -->
+            <th>Price</th>       <!-- Price column -->
+            <th>Quantity</th>    <!-- Quantity column -->
+          </tr>
+        </thead>
+
+        <!-- Table body section -->
+        <tbody>
+          <!-- Iterate over each item -->
+          {% for item in items %}
+            <!-- Table row for each item -->
+            <tr>
+              <!-- Item details columns -->
+              <td>{{ item.name }}</td>           <!-- Display item name -->
+              <td>&euro;{{ item.price }}</td>   <!-- Display item price with euro sign -->
+              <td>{{ item.quantity }}</td>       <!-- Display item quantity -->
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     {% else %}
+      <!-- Display message if no items available -->
       <p>No items available</p>
     {% endif %}
   </body>
