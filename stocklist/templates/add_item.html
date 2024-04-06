@@ -4,11 +4,11 @@
     <title>Butter and Jam?</title>
   </head>
     <!-- Page title -->
-
+  <body>   
     <h1>Add Item</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
+    <form method="post"> <!-- Form for adding a new item with HTTP POST method -->
+        {% csrf_token %}  <!-- CSRF token for form submission security -->
+        {{ form.as_p }} <!-- Renders the form fields as paragraphs -->
         <button type="submit">Add Item</button>
     </form>
   </body>
