@@ -7,9 +7,15 @@ from stocklist.models import Item
 
 
 def home(request):
+    # Fetch an item from the database (for demonstration purposes)
+    item = Item.objects.first()  # You can fetch any item based on your requirement
+
+    # Set the welcome message
+    welcome_message = "Welcome to Cabare's Stocklist homepage!"
 
     context = {
-        'message': 'Welcome to the homepage!',
+        'welcome_message': welcome_message,
+        'item': item,  # Pass the item object as context
     }
     return render(request, 'home.html', context)
 

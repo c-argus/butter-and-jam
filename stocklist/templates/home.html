@@ -8,7 +8,13 @@
 
   <body>
     <h1>{{ welcome_message }}</h1>
-    Hello World
+    {% if item %}
+      <p>Name: {{ item.name }}</p>
+      <p>Price: &euro;{{ item.price }}</p>
+      <p>Quantity: {{ item.quantity }}</p>
+    {% else %}
+      <p>No item available</p>
+    {% endif %}
     <h2></h2>
   </body>
 </html>
