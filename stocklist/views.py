@@ -50,12 +50,6 @@ def edit_item(request, item_id):
         form = ItemForm(instance=item)
     return render(request, 'edit_item.html', {'form': form})
 
-def toggle_item_status(request, item_id):
-    item = Item.objects.get(pk=item_id)
-    item.status = not item.status  # Toggle the status
-    item.save()
-    return redirect('home')  # Redirect back to the home page
-
 def delete_item(request, item_id):
     item = get_object_or_404(Item, id=item_id)
     item.delete()
