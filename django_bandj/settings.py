@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-ww9zt(t3g%ms^h8+eym5s(3+mih-qgvopn9twsv_k!zu642(qu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ 'ckz8780-django-bjcabare-app-8f8dee1752c3.herokuapp.com ', 'ckz8780-django-bjcabare-app-8f8dee1752c3.herokuapp.com']
+ALLOWED_HOSTS = [ 'ckz8780-django-bjcabare-app-8f8dee1752c3.herokuapp.com ', 'ckz8780-django-bjcabare-app-8f8dee1752c3.herokuapp.com', '8000-cargus-butterandjam-y1bphadsj75.ws-eu110.gitpod.io']
 
 
 # Application definition
