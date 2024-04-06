@@ -7,15 +7,15 @@ from stocklist.models import Item
 
 
 def home(request):
-    # Fetch an item from the database (for demonstration purposes)
-    item = Item.objects.first()  # You can fetch any item based on your requirement
+    # Fetch all items from the database
+    items = Item.objects.all()  
 
     # Set the welcome message
     welcome_message = "Welcome to Cabare's Stocklist homepage!"
 
     context = {
         'welcome_message': welcome_message,
-        'item': item,  # Pass the item object as context
+        'items': items,  # Provide the items queryset to be used in the template
     }
     return render(request, 'home.html', context)
 

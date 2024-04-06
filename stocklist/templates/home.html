@@ -8,13 +8,14 @@
 
   <body>
     <h1>{{ welcome_message }}</h1>
-    {% if item %}
-      <p>Name: {{ item.name }}</p>
-      <p>Price: &euro;{{ item.price }}</p>
-      <p>Quantity: {{ item.quantity }}</p>
+    {% if items %}
+      <ul>
+        {% for item in items %}
+          <li>Name: {{ item.name }}, Price: &euro;{{ item.price }}, Quantity: {{ item.quantity }}</li>
+        {% endfor %}
+      </ul>
     {% else %}
-      <p>No item available</p>
+      <p>No items available</p>
     {% endif %}
-    <h2></h2>
   </body>
 </html>
