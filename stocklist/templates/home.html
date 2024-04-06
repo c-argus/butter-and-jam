@@ -20,6 +20,7 @@
             <th>Name</th>        <!-- Name column -->
             <th>Price</th>       <!-- Price column -->
             <th>Quantity</th>    <!-- Quantity column -->
+            <th>Actions</th>     <!-- Actions column -->
           </tr>
         </thead>
 
@@ -33,6 +34,8 @@
               <td>{{ item.name }}</td>           <!-- Display item name -->
               <td>&euro;{{ item.price }}</td>   <!-- Display item price with euro sign -->
               <td>{{ item.quantity }}</td>       <!-- Display item quantity -->
+              <!-- Edit button -->
+              <td><a href="{% url 'edit_item' item.id %}">Edit</a></td>
             </tr>
           {% endfor %}
         </tbody>
