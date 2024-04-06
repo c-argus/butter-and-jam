@@ -25,4 +25,5 @@ urlpatterns = [
     path('item/<int:item_id>/', views.item_detail, name='item_detail'),
     path('', home, name='home'),
     path('add/', add_item, name='add_item'),  # Add this line for the new view
+    path('item/<int:item_id>/edit/', views.edit_item, name='edit_item') # URL pattern for editing an item
 ]
