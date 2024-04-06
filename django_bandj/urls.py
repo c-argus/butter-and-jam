@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from stocklist import views
+from stocklist.views import home, add_item
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('items/', views.item_list, name='item_list'),
-    path('item/<int:item_id>/', views.item_detail, name='item_detail')
+    path('item/<int:item_id>/', views.item_detail, name='item_detail'),
+    path('', home, name='home'),
+    path('add/', add_item, name='add_item'),  # Add this line for the new view
 ]
