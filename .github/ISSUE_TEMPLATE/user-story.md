@@ -7,4 +7,9 @@ assignees: ''
 
 ---
 
-As a **role** I can **capability** so that **received benefit**
+### Usar Story
+As a **role** I can **capability** so that **received benefit**.
+
+### Acceptance Criteria
+
+### Tasks
