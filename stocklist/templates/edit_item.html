@@ -8,6 +8,10 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+
+        <h2>Threshold Form</h2>
+        {{ threshold_form.as_p }} <!-- Render the fields of ThresholdForm -->
+        
         <button type="submit">Update Item</button>
     </form>
 </body>

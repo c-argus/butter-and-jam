@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Butter and Jam?</title>
-  </head>
+<head>
+  <title>Butter and Jam?</title>
+</head>
     <!-- Page title -->
-  <body>   
-    <h1>Add Item</h1>
-    <form method="post"> <!-- Form for adding a new item with HTTP POST method -->
-        {% csrf_token %}  <!-- CSRF token for form submission security -->
-        {{ form.as_p }} <!-- Renders the form fields as paragraphs -->
-        <button type="submit">Add Item</button>
-    </form>
-  </body>
+<body>   
+  <h1>Add Item</h1>
+  <form method="post"> <!-- Form for adding a new item with HTTP POST method -->
+    {% csrf_token %}  <!-- CSRF token for form submission security -->
+    
+    {{ item_form.as_p }} <!-- Renders the form fields as paragraphs -->
+
+    <h2>Reorder Form</h2>
+    {{ threshold_form.as_p }} <!-- Render the threshold_form fields -->
+
+    <button type="submit">Add Item</button>
+  </form>
+</body>
 </html>

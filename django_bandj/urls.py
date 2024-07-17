@@ -23,8 +23,8 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('items/', views.item_list, name='item_list'),
     path('item/<int:item_id>/', views.item_detail, name='item_detail'),
-    path('', home, name='home'),
-    path('add/', add_item, name='add_item'),  # Add this line for the new view
-    path('item/<int:item_id>/edit/', views.edit_item, name='edit_item'), # URL pattern for editing an item
-    path('item/<int:item_id>/delete/', views.delete_item, name='delete_item')
+    path('add/', add_item, name='add_item'),
+    path('item/<int:item_id>/edit/', views.edit_item, name='edit_item'),
+    path('item/<int:item_id>/delete/', views.delete_item, name='delete_item'),
+    path('login/', views.custom_login, name='login'),
 ]

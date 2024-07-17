@@ -1,6 +1,6 @@
 # Import necessary modules
 from django import forms
-from .models import Item
+from .models import Item, Threshold
 
 # Define a form class for adding items
 class ItemForm(forms.ModelForm):
@@ -27,3 +27,22 @@ class ItemForm(forms.ModelForm):
             raise forms.ValidationError('Reorder level cannot be negative')
         
         return reorder_level
+
+class ThresholdForm(forms.ModelForm):
+    class Meta:
+        model = Threshold
+        fields = ['value']
+        # Form for Threshold model to configure reorder threshold for an item
+        
+    def clean_value(self):
+        # Custom cleaning method for the value field
+        value = self.cleaned_data.get('value')
+
+        # Check if value is less than 1
+        if value < 1:
+            raise forms.ValidationError('Reorder threshold must be a positive integer.')
+
+        return value
+
+    
+

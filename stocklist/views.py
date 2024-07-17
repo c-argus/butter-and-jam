@@ -1,12 +1,27 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required  # Import decorator for login requirement
 from django.contrib import messages  # Import messages framework for user feedback
-from .forms import ItemForm
-from stocklist.models import Item
+from .forms import ItemForm, ThresholdForm
+from .models import Item
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 # Create view to fetch data from the database
 
+# Custom login view
+def custom_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')  # Redirect to home or another page after login
+        else:
+            # Handle invalid login
+            return render(request, 'login.html', {'error': 'Invalid username or password'})
+    else:
+        return render(request, 'login.html')
 
 def home(request):
     # Fetch all items from the database
@@ -21,47 +36,69 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
-# View for adding a new item
+# View for adding a new item and its associated reorder threshold.
 @login_required  # Ensure user is logged in to access this view
 def add_item(request):
     if request.method == 'POST':
-        form = ItemForm(request.POST)
-        if form.is_valid():
-            form.save()
+        item_form = ItemForm(request.POST, prefix='item')
+        threshold_form = ThresholdForm(request.POST, prefix='threshold') # Ensure ThresholdForm is initialized
+        
+        if item_form.is_valid() and threshold_form.is_valid():
+            item = item_form.save()
+            threshold = threshold_form.save(commit=False)
+            threshold.item = item
+            threshold.save()
             messages.success(request, 'Item added successfully')  # Success message
             return redirect('home')  # Redirect to home page after adding item
         else:
+            print("Item Form Errors:", item_form.errors)
+            print("Threshold Form Errors:", threshold_form.errors)
             messages.error(request, 'There was an error adding the item')  # Error message if form is not valid
     else:
-        form = ItemForm()
-    return render(request, 'add_item.html', {'form': form})
+        item_form = ItemForm(prefix='item')
+        threshold_form = ThresholdForm(prefix='threshold')  # Initialize an empty form for GET requests
+    
+    return render(request, 'add_item.html', {'item_form': item_form, 'threshold_form': threshold_form})
 
 # View for displaying a list of items
 def item_list(request):
     items = Item.objects.all()
     return render(request, 'item_list.html', {'items': items})
 
-# View for displaying details of a specific item
+# # View for displaying details of a specific item
+# def item_detail(request, item_id):
+#     item = get_object_or_404(Item, id=item_id)  # Get item by item_id or show 404 page if not found
+#     needs_reorder = item.needs_reorder()  # Check if item needs to be reordered
+#     return render(request, 'item_detail.html', {'item': item, 'needs_reorder': needs_reorder})  # Render item_detail.html template with item and needs_reorder
+
+# View for details of a specific item, including whether it needs to be reordered.
 def item_detail(request, item_id):
-    item = get_object_or_404(Item, id=item_id)  # Get item by item_id or show 404 page if not found
-    needs_reorder = item.needs_reorder()  # Check if item needs to be reordered
-    return render(request, 'item_detail.html', {'item': item, 'needs_reorder': needs_reorder})  # Render item_detail.html template with item and needs_reorder
+    item = get_object_or_404(Item, id=item_id)
+    needs_reorder = item.needs_reorder()
+    return render(request, 'item_detail.html', {'item': item, 'needs_reorder': needs_reorder})
 
 # View for editing an existing item
 @login_required  # Ensure user is logged in to access this view
 def edit_item(request, item_id):
     item = get_object_or_404(Item, id=item_id)
+    threshold_instance = item.threshold if hasattr(item, 'threshold') else None
+
     if request.method == 'POST':
-        form = ItemForm(request.POST, instance=item)
-        if form.is_valid():
-            form.save()
+        item_form = ItemForm(request.POST, instance=item, prefix='item')
+        threshold_form = ThresholdForm(request.POST, instance=threshold_instance, prefix='threshold')
+        if item_form.is_valid() and threshold_form.is_valid():
+            item_form.save()
+            threshold = threshold_form.save(commit=False)
+            threshold.item = item
+            threshold.save()
             messages.success(request, 'Item updated successfully')  # Success message
             return redirect('home')
         else:
             messages.error(request, 'There was an error updating the item')  # Error message if form is not valid
     else:
-        form = ItemForm(instance=item)
-    return render(request, 'edit_item.html', {'form': form})
+        item_form = ItemForm(instance=item, prefix='item')
+        threshold_form = ThresholdForm(instance=threshold_instance, prefix='threshold')
+    return render(request, 'edit_item.html', {'item_form': item_form, 'threshold_form': threshold_form})
 
 # View for deleting an existing item
 @login_required  # Ensure user is logged in to access this view

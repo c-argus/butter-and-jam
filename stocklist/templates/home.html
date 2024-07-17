@@ -5,6 +5,7 @@
   <head>
     <title>Butter and Jam?</title>
   </head>
+  <body>
     <!-- Page title -->
     <h1>{{ welcome_message }}</h1>
 
@@ -23,7 +24,6 @@
             <th>Actions</th>     <!-- Actions column -->
           </tr>
         </thead>
-
         <!-- Table body section -->
         <tbody>
           <!-- Iterate over each item -->
@@ -36,9 +36,7 @@
               <td>{{ item.quantity }}</td>       <!-- Display item quantity -->
               <!-- Edit button -->
               <td><a href="{% url 'edit_item' item.id %}">Edit</a></td>
-              <td>
-                <a href="{% url 'delete_item' item.id %}">Delete</a>
-              </td>
+              <td><a href="{% url 'delete_item' item.id %}">Delete</a></td>
             </tr>
           {% endfor %}
         </tbody>
@@ -47,6 +45,8 @@
       <!-- Display message if no items available -->
       <p>No items available</p>
     {% endif %}
-    <a href="/add">Add an Item</a>
-  </body>
+    <!-- Add a link to the add_item page -->
+    <a href="{% url 'add_item' %}">Add an Item</a>
+
+</body>
 </html>

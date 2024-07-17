@@ -31,6 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [ 'ckz8780-django-bjcabare-app-8f8dee1752c3.herokuapp.com ', 'ckz8780-django-bjcabare-app-8f8dee1752c3.herokuapp.com', '8000-cargus-butterandjam-y1bphadsj75.ws-eu110.gitpod.io',  '8000-cargus-butterandjam-tpeeej391a8.ws.codeinstitute-ide.net']
 
+LOGIN_URL = 'login'
 
 # Application definition
 
