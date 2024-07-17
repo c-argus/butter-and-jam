@@ -9,10 +9,12 @@ from django.core.validators import MinValueValidator
 
 class Item(models.Model):
     name = models.CharField(max_length=200, null=False, blank=False, unique=True)
+    description = models.TextField(null=True, blank=True)
     price = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, blank=False, validators=[MinValueValidator(0.01)]
     )
-    quantity = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
+    quantity = models.PositiveIntegerField(default=0)
+    reorder_level = models.PositiveIntegerField(default=0)  # Add reorder_level field to Item model
     status = models.BooleanField(default=True)  # Add status field (True for active, False for inactive)
 
     # Threshold for reordering the item, must be a positive integer
