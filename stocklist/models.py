@@ -1,11 +1,14 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 # Create your models here.
 # Create two models, one for Item and one for Quantity
 # Model Item has the quantity of each item.
 # Quantity is of type PositiveIntegerField to ensure the quantity value won't be negative
+
 
 
 class Item(models.Model):
