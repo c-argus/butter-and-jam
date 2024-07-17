@@ -74,7 +74,7 @@ def edit_item(request, item_id):
 
     if request.method == 'POST':
         item_form = ItemForm(request.POST, instance=item, prefix='item')
-        if item_form.is_valid():  # and threshold_form.is_valid():
+        if item_form.is_valid():  
             item_form.save()
             messages.success(request, 'Item updated successfully')  # Success message
             return redirect('home')
