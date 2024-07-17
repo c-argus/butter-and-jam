@@ -14,7 +14,7 @@ from django.db import models
 class Item(models.Model):
     name = models.CharField(max_length=200, null=False, blank=False, unique=True)
     description = models.TextField(null=True, blank=True)
-    price = price = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, validators=[MinValueValidator(0.01)])
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, validators=[MinValueValidator(0.01)])
     quantity = models.PositiveIntegerField(default=0)
     reorder_level = models.PositiveIntegerField(default=0)  # Add reorder_level field to Item model
     status = models.BooleanField(default=True)  # Add status field (True for active, False for inactive)
@@ -28,6 +28,20 @@ class Item(models.Model):
     def needs_reorder(self):
         # Determines if the item needs to be reordered based on its current quantity and the associated reorder threshold.
         return self.quantity < self.reorder_threshold
+
+    def save(self, *args, **kwargs):
+
+        super().save(*args, **kwargs)
+
+        if self.needs_reorder():
+
+            Notification.objects.create(
+
+                item=self,
+
+                message=f"The stock for {self.name} has fallen below the reorder threshold of {self.reorder_threshold}."
+
+            )
 
 # Each item can have a configurable reorder threshold
 class Threshold(models.Model):
@@ -44,5 +58,14 @@ class Threshold(models.Model):
 
     class Meta:
         verbose_name_plural = "Thresholds"
+
+class Notification(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE) # ForeignKey to link the notification to a specific item. When the item is deleted, the notification is also deleted.
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True) # DateTime field to store when the notification was created. Automatically set to the current date and time when the notification is created.
+    read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Notification for {self.item.name}: {self.message}"
 
 

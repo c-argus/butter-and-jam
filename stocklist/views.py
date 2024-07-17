@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required  # Import decorator for login requirement
 from django.contrib import messages  # Import messages framework for user feedback
 from .forms import ItemForm
-from .models import Item
+from .models import Item, Notification
 from django.contrib.auth import authenticate, login
+from django.urls import reverse
+from django.views.decorators.http import require_POST
 
 # Create your views here.
 # Create view to fetch data from the database
@@ -43,12 +45,17 @@ def add_item(request):
         item_form = ItemForm(request.POST, prefix='item')
                 
         if item_form.is_valid():
-            item = item_form.save(commit=False)
-            item.reorder_threshold = 5  # Set default reorder threshold value
-            item.save()
+            item = item_form.save()
+            # Check if the item's quantity is below the reorder threshold
+            if item.quantity < item.reorder_threshold:
+                Notification.objects.create(
+                    item=item,
+                    message=f"The stock for {item.name} is below the reorder threshold."
+                )
             messages.success(request, 'Item added successfully')  # Success message
             return redirect('home')  # Redirect to home page after adding item
         else:
+            print("Item Form Errors:", item_form.errors)
             messages.error(request, 'There was an error adding the item')  # Error message if form is not valid
     else:
         item_form = ItemForm(prefix='item')
@@ -70,12 +77,19 @@ def item_detail(request, item_id):
 @login_required  # Ensure user is logged in to access this view
 def edit_item(request, item_id):
     item = get_object_or_404(Item, id=item_id)
-    threshold_instance = item.threshold if hasattr(item, 'threshold') else None
+    # threshold_instance = item.threshold if hasattr(item, 'threshold') else None
 
     if request.method == 'POST':
         item_form = ItemForm(request.POST, instance=item, prefix='item')
         if item_form.is_valid():  
-            item_form.save()
+            item = item_form.save()
+            # Check if the item's quantity is below the reorder threshold
+
+            if item.quantity < item.reorder_threshold:
+                Notification.objects.create(
+                    item=item,
+                    message=f"The stock for {item.name} is below the reorder threshold."             
+                )
             messages.success(request, 'Item updated successfully')  # Success message
             return redirect('home')
         else:
@@ -91,3 +105,17 @@ def delete_item(request, item_id):
     item.delete()  # Delete the item from the database
     messages.success(request, 'Item deleted successfully')  # Success message
     return redirect('home')  # Redirect to home page after deleting item
+
+# View to display notifications
+@login_required
+def notifications(request):
+    notifications = Notification.objects.filter(read=False)
+    return render(request, 'notifications.html', {'notifications': notifications})
+
+@require_POST
+@login_required
+def mark_as_read(request, notification_id):
+    notification = get_object_or_404(Notification, id=notification_id)
+    notification.read = True
+    notification.save()
+    return HttpResponseRedirect(reverse('notifications'))

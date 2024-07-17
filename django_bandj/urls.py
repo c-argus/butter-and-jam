@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from stocklist import views
-from stocklist.views import home, add_item
+from stocklist.views import home, add_item, edit_item, delete_item, notifications
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,7 +24,9 @@ urlpatterns = [
     path('items/', views.item_list, name='item_list'),
     path('item/<int:item_id>/', views.item_detail, name='item_detail'),
     path('add/', add_item, name='add_item'),
-    path('item/<int:item_id>/edit/', views.edit_item, name='edit_item'),
-    path('item/<int:item_id>/delete/', views.delete_item, name='delete_item'),
+    path('item/<int:item_id>/edit/', edit_item, name='edit_item'),
+    path('item/<int:item_id>/delete/', delete_item, name='delete_item'),
+    path('notifications/', notifications, name='notifications'),
     path('login/', views.custom_login, name='login'),
+    path('notification/<int:notification_id>/mark_as_read/', views.mark_as_read, name='mark_as_read'),
 ]
