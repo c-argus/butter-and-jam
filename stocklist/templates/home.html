@@ -2,13 +2,14 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Butter and Jam?</title>
-  </head>
-  <body>
+<head>
+  <title>Butter and Jam?</title>
+</head>
+<body>
     <!-- Page title -->
     <h1>{{ welcome_message }}</h1>
-
+    <!-- Link to notifications page -->
+    <a href="{% url 'notifications' %}">View Notifications</a>
     <!-- Check if items are available -->
     {% if items %}
       <!-- Table to display item list -->

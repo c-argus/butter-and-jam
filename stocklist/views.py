@@ -38,7 +38,7 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
-# View for adding a new item.
+# View for adding a new item and its associated reorder threshold.
 @login_required  # Ensure user is logged in to access this view
 def add_item(request):
     if request.method == 'POST':
@@ -66,6 +66,12 @@ def add_item(request):
 def item_list(request):
     items = Item.objects.all()
     return render(request, 'item_list.html', {'items': items})
+
+# View for displaying details of a specific item
+def item_detail(request, item_id):
+    item = get_object_or_404(Item, id=item_id)  # Get item by item_id or show 404 page if not found
+    needs_reorder = item.needs_reorder()  # Check if item needs to be reordered
+    return render(request, 'item_detail.html', {'item': item, 'needs_reorder': needs_reorder})  # Render item_detail.html template with item and needs_reorder
 
 # View for details of a specific item, including whether it needs to be reordered.
 def item_detail(request, item_id):
@@ -109,13 +115,13 @@ def delete_item(request, item_id):
 # View to display notifications
 @login_required
 def notifications(request):
-    notifications = Notification.objects.filter(read=False)
-    return render(request, 'notifications.html', {'notifications': notifications})
+    notifications = Notification.objects.all()
+    return render(request, 'stocklist/notifications.html', {'notifications': notifications})
 
 @require_POST
 @login_required
-def mark_as_read(request, notification_id):
+def mark_notification_as_read(request, notification_id):
     notification = get_object_or_404(Notification, id=notification_id)
     notification.read = True
     notification.save()
-    return HttpResponseRedirect(reverse('notifications'))
+    return redirect(('notifications'))

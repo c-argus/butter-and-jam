@@ -5,16 +5,43 @@
 </head>
 <body>
     <h1>Notifications</h1>
-    <ul>
-        {% for notification in notifications %}
-            <li>
-                {{ notification.message }} - {{ notification.created_at }}
-                <form method="post" action="{% url 'mark_as_read' notification.id %}">
-                    {% csrf_token %}
-                    <button type="submit">Mark as read</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
+
+    <!-- Check if there are any notifications -->
+    {% if notifications %}
+    <!-- Table to display notifications -->
+    <table>
+        <!-- Table header section -->
+        <thead>
+            <!-- Table row for column headings -->
+            <tr>
+                <!-- Column headings -->
+                <th>Item</th>        <!-- Item column -->
+                <th>Message</th>     <!-- Message column -->
+                <th>Created At</th>  <!-- Created At column -->
+                <th>Read</th>        <!-- Read column -->
+            </tr>
+        </thead>
+        <!-- Table body section -->
+        <tbody>
+            <!-- Iterate over each notification -->
+            {% for notification in notifications %}
+            <!-- Table row for each notification -->
+            <tr>
+                <!-- Notification details columns -->
+                <td>{{ notification.item.name }}</td>   <!-- Display item name -->
+                <td>{{ notification.message }}</td>     <!-- Display notification message -->
+                <td>{{ notification.created_at }}</td>  <!-- Display creation date -->
+                <td>{{ notification.read }}</td>        <!-- Display read status -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <!-- Display message if no notifications are available -->
+    <p>No notifications available</p>
+    {% endif %}
+
+    <!-- Link to go back to the home page -->
+    <a href="{% url 'home' %}">Back to Home</a>
 </body>
 </html>
