@@ -20,7 +20,7 @@ from stocklist.views import home, add_item, edit_item, delete_item, notification
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path('home/', views.home, name='home'),
     path('items/', views.item_list, name='item_list'),
     path('item/<int:item_id>/', views.item_detail, name='item_detail'),
     path('add/', views.add_item, name='add_item'),

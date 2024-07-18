@@ -16,10 +16,11 @@ def custom_login(request):
             login(request, user)
             return redirect('home')
         else:
-            return render(request, 'login.html', {'error': 'Invalid username or password'})
+            return render(request, 'stocklist/login.html', {'error': 'Invalid username or password'})
     else:
-        return render(request, 'login.html')
+        return render(request, 'stocklist/login.html')
 
+@login_required
 def home(request):
     items = Item.objects.all()
     welcome_message = "Welcome to Cabare's Stocklist homepage!"
