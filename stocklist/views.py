@@ -65,10 +65,12 @@ def edit_item(request, item_id):
         if item_form.is_valid():
             item = item_form.save()
             if item.quantity < item.reorder_threshold:
+                Notification.objects.filter(item=item).delete()
                 Notification.objects.create(
                     item=item,
                     message=f"The stock for {item.name} has fallen below the reorder threshold."
                 )
+            
             messages.success(request, 'Item updated successfully')
             return redirect('home')
         else:
