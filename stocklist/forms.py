@@ -18,14 +18,8 @@ class ItemForm(forms.ModelForm):
 
         return quantity
 
-    def clean_reorder_level(self):
-        # Custom cleaning method for the reorder_level field
-        reorder_level = self.cleaned_data.get('reorder_level')
 
-        # Check if reorder_level is negative
-        if reorder_level < 0:
-            raise forms.ValidationError('Reorder level cannot be negative')
-        
-        return reorder_level
+
+
     
 

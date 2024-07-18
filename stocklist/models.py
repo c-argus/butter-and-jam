@@ -1,15 +1,10 @@
 from django.db import models
 from django.core.validators import MinValueValidator
-from django.core.exceptions import ValidationError
-from django.contrib.auth.models import AbstractUser
-from django.db import models
 
 # Create your models here.
 # Create two models, one for Item and one for Quantity
 # Model Item has the quantity of each item.
 # Quantity is of type PositiveIntegerField to ensure the quantity value won't be negative
-
-
 
 class Item(models.Model):
     name = models.CharField(max_length=200, null=False, blank=False, unique=True)
@@ -30,34 +25,12 @@ class Item(models.Model):
         return self.quantity < self.reorder_threshold
 
     def save(self, *args, **kwargs):
-
         super().save(*args, **kwargs)
-
-        if self.needs_reorder():
-
+        if self.needs_reorder() and not Notification.objects.filter(item=self, read=False).exists():
             Notification.objects.create(
-
                 item=self,
-
                 message=f"The stock for {self.name} has fallen below the reorder threshold of {self.reorder_threshold}."
-
             )
-
-# Each item can have a configurable reorder threshold
-class Threshold(models.Model):
-    # Use string reference to avoid circular import issues
-    item = models.OneToOneField('Item', on_delete=models.CASCADE, related_name='threshold')
-    value = models.PositiveIntegerField(default=5, validators=[MinValueValidator(1)])
-
-    def clean(self):
-        if self.value < 1:
-            raise ValidationError('Reorder threshold must be a positive integer.')
-
-    def __str__(self):
-        return f"Threshold for {self.item.name}: {self.value}"
-
-    class Meta:
-        verbose_name_plural = "Thresholds"
 
 class Notification(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE) # ForeignKey to link the notification to a specific item. When the item is deleted, the notification is also deleted.
@@ -67,5 +40,8 @@ class Notification(models.Model):
 
     def __str__(self):
         return f"Notification for {self.item.name}: {self.message}"
+
+
+
 
 

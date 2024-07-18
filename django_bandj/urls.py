@@ -30,3 +30,6 @@ urlpatterns = [
     path('login/', views.custom_login, name='login'),
     path('notifications/mark_as_read/<int:notification_id>/', views.mark_notification_as_read, name='mark_notification_as_read'),
 ]
+
+
+
