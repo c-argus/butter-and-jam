@@ -5,6 +5,8 @@ from .forms import ItemForm
 from .models import Item, Notification
 from django.contrib.auth import authenticate, login
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
 # Custom login view
 def custom_login(request):
@@ -94,10 +96,14 @@ def notifications(request):
 
 @require_POST
 @login_required
+@csrf_exempt
 def mark_notification_as_read(request, notification_id):
     notification = get_object_or_404(Notification, id=notification_id)
     notification.read = True
     notification.save()
-    return redirect('notifications')
+    data = {
+        'message': 'item updated successfully',
+    }
+    return JsonResponse(data)
 
 

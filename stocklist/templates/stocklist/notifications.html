@@ -15,10 +15,11 @@
             <!-- Table row for column headings -->
             <tr>
                 <!-- Column headings -->
-                <th>Item</th>        <!-- Item column -->
+                <th>Item Name</th>        <!-- Item column -->
                 <th>Message</th>     <!-- Message column -->
                 <th>Created At</th>  <!-- Created At column -->
-                <th>Read</th>        <!-- Read column -->
+                <th>Status</th>        <!-- Read column -->
+                <th>Action</th>        <!-- Read column -->
             </tr>
         </thead>
         <!-- Table body section -->
@@ -31,7 +32,14 @@
                 <td>{{ notification.item.name }}</td>   <!-- Display item name -->
                 <td>{{ notification.message }}</td>     <!-- Display notification message -->
                 <td>{{ notification.created_at }}</td>  <!-- Display creation date -->
-                <td>{{ notification.read }}</td>        <!-- Display read status -->
+                <td>
+                    {% if notification.read %}
+                        Read
+                    {% else %}
+                        Unread
+                    {% endif %}
+                </td>        <!-- Display read status -->
+                <td><button class="markAsReadButton" data-id="{{notification.id}}">Mark as read</button></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -43,6 +51,25 @@
 
     <!-- Link to go back to the home page -->
     <a href="{% url 'home' %}">Back to Home</a>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Ready!')
+            const buttonELs = [...document.querySelectorAll('.markAsReadButton')]
+            buttonELs.forEach(buttonEl => {
+                buttonEl.addEventListener('click', async (e) => {
+                    console.log('markAsReadButton!!', )
+                    const notificationId = e.target.dataset.id;
+                    const response = await fetch(`/notifications/mark_as_read/${notificationId}/`, {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                    location.reload()
+                })
+            });
+        })
+    </script>
 </body>
 </html>
 
