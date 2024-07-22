@@ -2,52 +2,70 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Butter and Jam?</title>
 </head>
+
 <body>
-    <!-- Page title -->
-    <h1>{{ welcome_message }}</h1>
-    <!-- Link to notifications page -->
-    <a href="{% url 'notifications' %}">View Notifications</a>
-    <!-- Check if items are available -->
-    {% if items %}
-      <!-- Table to display item list -->
-      <table>
-        <!-- Table header section -->
-        <thead>
-          <!-- Table row for column headings -->
-          <tr>
-            <!-- Column headings -->
-            <th>Name</th>        <!-- Name column -->
-            <th>Price</th>       <!-- Price column -->
-            <th>Quantity</th>    <!-- Quantity column -->
-            <th>Actions</th>     <!-- Actions column -->
-          </tr>
-        </thead>
-        <!-- Table body section -->
-        <tbody>
-          <!-- Iterate over each item -->
-          {% for item in items %}
-            <!-- Table row for each item -->
-            <tr>
-              <!-- Item details columns -->
-              <td>{{ item.name }}</td>           <!-- Display item name -->
-              <td>&euro;{{ item.price }}</td>   <!-- Display item price with euro sign -->
-              <td>{{ item.quantity }}</td>       <!-- Display item quantity -->
-              <!-- Edit button -->
-              <td><a href="{% url 'edit_item' item.id %}">Edit</a></td>
-              <td><a href="{% url 'delete_item' item.id %}">Delete</a></td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    {% else %}
-      <!-- Display message if no items available -->
-      <p>No items available</p>
-    {% endif %}
-    <!-- Add a link to the add_item page -->
-    <a href="{% url 'add_item' %}">Add an Item</a>
+  <!-- Page title -->
+  <div>
+    Hello, {{ user.username }} - <a href="{% url 'logout' %}">Logout</a>
+  </div>
+  <h1>{{ welcome_message }}</h1>
+  <!-- Link to notifications page -->
+  {% if user.is_staff %}
+  <a href="{% url 'notifications' %}">View Notifications</a>
+  {% endif %}
+  <!-- Check if items are available -->
+  {% if items %}
+  <!-- Table to display item list -->
+  <table>
+    <!-- Table header section -->
+    <thead>
+      <!-- Table row for column headings -->
+      <tr>
+        <!-- Column headings -->
+        <th>Name</th> <!-- Name column -->
+        <th>Price</th> <!-- Price column -->
+        <th>Quantity</th> <!-- Quantity column -->
+        {% if user.is_staff %}
+        <th>Actions</th> <!-- Actions column -->
+        {% endif %}
+      </tr>
+    </thead>
+    <!-- Table body section -->
+    <tbody>
+      <!-- Iterate over each item -->
+      {% for item in items %}
+      <!-- Table row for each item -->
+      <tr>
+        <!-- Item details columns -->
+        <td>{{ item.name }}</td> <!-- Display item name -->
+        <td>&euro;{{ item.price }}</td> <!-- Display item price with euro sign -->
+        <td>{{ item.quantity }}</td> <!-- Display item quantity -->
+        <!-- Edit button -->
+        {% if user.is_staff%}
+        <td>
+          <a href="{% url 'edit_item' item.id %}">Edit</a>
+        </td>
+        {% endif %}
+        {% if user.is_staff%}
+        <td>
+          <a href="{% url 'delete_item' item.id %}">Delete</a>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <!-- Display message if no items available -->
+  <p>No items available</p>
+  {% endif %}
+  <!-- Add a link to the add_item page -->
+  <a href="{% url 'add_item' %}">Add an Item</a>
 
 </body>
+
 </html>

@@ -1,12 +1,29 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import ItemForm
+from .forms import ItemForm, UserRegistrationForm
 from .models import Item, Notification
 from django.contrib.auth import authenticate, login
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            return redirect('login')
+    else:
+        form = UserRegistrationForm()
+
+    return render(request, 'stocklist/register.html', {'form': form})
+
 
 # Custom login view
 def custom_login(request):
@@ -26,9 +43,11 @@ def custom_login(request):
 def home(request):
     items = Item.objects.all()
     welcome_message = "Welcome to Cabare's Stocklist homepage!"
+    user = request.user
     context = {
         'welcome_message': welcome_message,
         'items': items,
+        'user': user
     }
     return render(request, 'home.html', context)
 
@@ -62,6 +81,8 @@ def item_detail(request, item_id):
 
 @login_required
 def edit_item(request, item_id):
+    user = request.user
+    if not user.is_staff : return redirect('home')
     item = get_object_or_404(Item, id=item_id)
     if request.method == 'POST':
         item_form = ItemForm(request.POST, instance=item, prefix='item')
@@ -84,6 +105,8 @@ def edit_item(request, item_id):
 
 @login_required
 def delete_item(request, item_id):
+    user = request.user
+    if not user.is_staff : return redirect('home')
     item = get_object_or_404(Item, id=item_id)
     item.delete()
     messages.success(request, 'Item deleted successfully')
@@ -91,6 +114,8 @@ def delete_item(request, item_id):
 
 @login_required
 def notifications(request):
+    user = request.user
+    if not user.is_staff : return redirect('home')
     notifications = Notification.objects.all()
     return render(request, 'stocklist/notifications.html', {'notifications': notifications})
 
