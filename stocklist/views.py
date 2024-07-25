@@ -42,10 +42,8 @@ def custom_login(request):
 @login_required
 def home(request):
     items = Item.objects.all()
-    welcome_message = "Welcome to Cabare's Stocklist homepage!"
     user = request.user
     context = {
-        'welcome_message': welcome_message,
         'items': items,
         'user': user
     }

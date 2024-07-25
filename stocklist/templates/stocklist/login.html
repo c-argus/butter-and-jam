@@ -1,9 +1,37 @@
 <!-- login.html -->
 {% load static %}
-<link rel="stylesheet" href="{% static '/styles/login.css' %}">
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <input type="text" name="username" placeholder="Username" required class="input">
-    <input type="password" name="password" placeholder="Password" required class="input">
-    <button type="submit">Login</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabare StockList</title>
+    <link rel="stylesheet" href="{% static '/styles/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static '/styles/common.css' %}">
+    <link rel="stylesheet" href="{% static '/styles/login.css' %}">
+</head>
+
+<body>
+    <div class="background" style="background-image: url({% static '/images/coffee_pattern.jpg' %});"></div>
+    <div class="container">
+        <div class="content">
+            <h3 class="title">Cabare StockList</h3>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" id="username">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="username">
+                </div>
+                <button type="submit" class="btn btn-default">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

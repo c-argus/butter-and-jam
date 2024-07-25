@@ -1,63 +1,86 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Notifications</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Butter and Jam?</title>
+    <link rel="stylesheet" href="{% static '/styles/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static '/styles/common.css' %}">
+    <link rel="stylesheet" href="{% static '/styles/notifications.css' %}">
 </head>
+
 <body>
-    <h1>Notifications</h1>
+    <div class="background" style="background-image: url({% static '/images/coffee_pattern.jpg' %});"></div>
+    <div class="container">
+        <div class="content">
+            <h3>Notifications</h3>
+            <!-- Check if there are any notifications -->
+            {% if notifications %}
+            <!-- Table to display notifications -->
+            <div class="tableWrapper">
+                <table class="table">
+                    <!-- Table header section -->
+                    <thead>
+                        <!-- Table row for column headings -->
+                        <tr>
+                            <!-- Column headings -->
+                            <th scope="col">Item Name</th> <!-- Item column -->
+                            <th scope="col">Message</th> <!-- Message column -->
+                            <th scope="col">Created At</th> <!-- Created At column -->
+                            <th scope="col">Status</th> <!-- Read column -->
+                            <th scope="col">Action</th> <!-- Read column -->
+                        </tr>
+                    </thead>
+                    <!-- Table body section -->
+                    <tbody>
+                        <!-- Iterate over each notification -->
+                        {% for notification in notifications %}
+                        <!-- Table row for each notification -->
+                        <tr>
+                            <!-- Notification details columns -->
+                            <td scope="row">{{ notification.item.name }}</td> <!-- Display item name -->
+                            <td scope="row">{{ notification.message }}</td> <!-- Display notification message -->
+                            <td scope="row"><span class="date">{{ notification.created_at }}</span></td>
+                            <!-- Display creation date -->
+                            <td scope="row">
+                                {% if notification.read %}
+                                <span class="statusRead">
+                                    Read
+                                </span>
+                                {% else %}
+                                <span class="statusUnread">
+                                    Unread
+                                </span>
+                                {% endif %}
+                            </td> <!-- Display read status -->
+                            <td scope="row"><button class="markAsReadButton btn btn-default"
+                                    data-id="{{notification.id}}">Mark
+                                    as
+                                    read</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <!-- Display message if no notifications are available -->
+            <p>No notifications available</p>
+            {% endif %}
 
-    <!-- Check if there are any notifications -->
-    {% if notifications %}
-    <!-- Table to display notifications -->
-    <table>
-        <!-- Table header section -->
-        <thead>
-            <!-- Table row for column headings -->
-            <tr>
-                <!-- Column headings -->
-                <th>Item Name</th>        <!-- Item column -->
-                <th>Message</th>     <!-- Message column -->
-                <th>Created At</th>  <!-- Created At column -->
-                <th>Status</th>        <!-- Read column -->
-                <th>Action</th>        <!-- Read column -->
-            </tr>
-        </thead>
-        <!-- Table body section -->
-        <tbody>
-            <!-- Iterate over each notification -->
-            {% for notification in notifications %}
-            <!-- Table row for each notification -->
-            <tr>
-                <!-- Notification details columns -->
-                <td>{{ notification.item.name }}</td>   <!-- Display item name -->
-                <td>{{ notification.message }}</td>     <!-- Display notification message -->
-                <td>{{ notification.created_at }}</td>  <!-- Display creation date -->
-                <td>
-                    {% if notification.read %}
-                        Read
-                    {% else %}
-                        Unread
-                    {% endif %}
-                </td>        <!-- Display read status -->
-                <td><button class="markAsReadButton" data-id="{{notification.id}}">Mark as read</button></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <!-- Display message if no notifications are available -->
-    <p>No notifications available</p>
-    {% endif %}
-
-    <!-- Link to go back to the home page -->
-    <a href="{% url 'home' %}">Back to Home</a>
+            <!-- Link to go back to the home page -->
+            <a href="{% url 'home' %}" class="btn btn-default">Back to Home</a>
+        </div>
+    </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             console.log('Ready!')
             const buttonELs = [...document.querySelectorAll('.markAsReadButton')]
             buttonELs.forEach(buttonEl => {
                 buttonEl.addEventListener('click', async (e) => {
-                    console.log('markAsReadButton!!', )
+                    console.log('markAsReadButton!!',)
                     const notificationId = e.target.dataset.id;
                     const response = await fetch(`/notifications/mark_as_read/${notificationId}/`, {
                         method: "POST",
@@ -71,6 +94,5 @@
         })
     </script>
 </body>
+
 </html>
-
-

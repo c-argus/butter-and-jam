@@ -1,0 +1,31 @@
+.tableWrapper {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.nameColumn {
+    width: 200px;
+}
+
+.welcome {
+    padding: 10px;
+}
+
+.content {
+    width: 480px;
+    background: #f5f3f3;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 20px 0px #0000003b;
+}
+
+.table td,
+.table th {
+    background: transparent;
+}
+
+.textCenter {
+    text-align: center;
+}
