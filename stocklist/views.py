@@ -58,6 +58,7 @@ def add_item(request):
         if item_form.is_valid():
             item = item_form.save()
             if item.quantity < item.reorder_threshold:
+                Notification.objects.filter(item=item).delete()
                 Notification.objects.create(
                     item=item,
                     message=f"The stock for {item.name} has fallen below the reorder threshold."

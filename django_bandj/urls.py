@@ -20,6 +20,7 @@ from stocklist.views import home, add_item, edit_item, delete_item, notification
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    path('', views.home, name='register'),
     path('register/', views.register, name='register'),
     path('admin/', admin.site.urls),
     path('home/', views.home, name='home'),
