@@ -1,20 +1,41 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Add Item</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabare StockList</title>
+  <link rel="stylesheet" href="{% static '/styles/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static '/styles/common.css' %}">
+  <link rel="stylesheet" href="{% static '/styles/login.css' %}">
 </head>
+
 <body>
-  <!-- Page title -->
-  <h1>Add Item</h1>
-  <form method="post"> <!-- Form for adding a new item with HTTP POST method -->
-    {% csrf_token %}  <!-- CSRF token for form submission security -->
-    
-    {{ item_form.as_p }} <!-- Renders the form fields as paragraphs -->
-
-    <button type="submit">Add Item</button>
-  </form>
+  <div class="background" style="background-image: url({% static '/images/coffee_pattern.jpg' %});"></div>
+  <div class="container">
+    <div class="content">
+      <!-- Page title -->
+      <h3 class="title">Add Item</h3>
+      <form method="post"> <!-- Form for adding a new item with HTTP POST method -->
+        {% csrf_token %} <!-- CSRF token for form submission security -->
+        <div class="mb-3">
+          <p><label for="id_item-name">Name:</label>
+            <input type="text" name="item-name" maxlength="200" required="" id="id_item-name" class="form-control">
+          </p>
+          <p><label for="id_item-price">Price:</label>
+            <input type="number" name="item-price" step="0.01" required="" id="id_item-price" class="form-control">
+          </p>
+          <p><label for="id_item-quantity">Quantity:</label>
+            <input type="number" name="item-quantity" value="0" min="0" required="" id="id_item-quantity"
+              class="form-control">
+          </p> <!-- Renders the form fields as paragraphs -->
+          <button type="submit" class="btn btn-default">Add Item</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
+
 </html>
-
-
-
