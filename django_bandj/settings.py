@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
-if os.path.isfile('env.py'):
+
+if os.path.isfile("env.py"):
     import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-ww9zt(t3g%ms^h8+eym5s(3+mih-qgvopn9twsv_k!zu642(qu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ 'ckz8780-django-bjcabare-app-8f8dee1752c3.herokuapp.com ', 'ckz8780-django-bjcabare-app-8f8dee1752c3.herokuapp.com', '8000-cargus-butterandjam-y1bphadsj75.ws-eu110.gitpod.io',  '8000-cargus-butterandjam-tpeeej391a8.ws.codeinstitute-ide.net']
+ALLOWED_HOSTS = ['8000-cargus-butterandjam-y1bphadsj75.ws-eu110.gitpod.io',  '8000-cargus-butterandjam-tpeeej391a8.ws.codeinstitute-ide.net']
 
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'login'
