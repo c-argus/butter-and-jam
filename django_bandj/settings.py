@@ -33,7 +33,7 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = [
     '8000-cargus-butterandjam-y1bphadsj75.ws-eu110.gitpod.io',  
     '8000-cargus-butterandjam-tpeeej391a8.ws.codeinstitute-ide.net', 
-    'cabare-stocklist-bandj.herokuapp.com'
+    'cabare-stocklist-bandj-64bab33316f2.herokuapp.com'
 ]
 
 LOGIN_URL = 'login'
