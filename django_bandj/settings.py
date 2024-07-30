@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-ww9zt(t3g%ms^h8+eym5s(3+mih-qgvopn9twsv_k!zu642(qu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-cargus-butterandjam-y1bphadsj75.ws-eu110.gitpod.io',  '8000-cargus-butterandjam-tpeeej391a8.ws.codeinstitute-ide.net']
+ALLOWED_HOSTS = ['8000-cargus-butterandjam-y1bphadsj75.ws-eu110.gitpod.io',  '8000-cargus-butterandjam-tpeeej391a8.ws.codeinstitute-ide.net', 'cabare-stocklist-bandj-eae77f44c56d.herokuapp.com']
 
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'login'
@@ -130,11 +130,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
+#STATICFILES_DIRS = [
+    # BASE_DIR / "static",
+# ]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
