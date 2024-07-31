@@ -17,7 +17,15 @@
             <h1>Item List</h1>
             <ul>
                 {% for item in items %}
-                <li>{{ item.name }} - {{ item.price|currency:'EUR'|localized }}</li>
+                <li>
+                    <p>{{ item.name }} - {{ item.price|floatformat:2 }} EUR</p>
+                    {% if item.added_by %}
+                    <p>Added by: {{ item.added_by.username }}</p>
+                    {% else %}
+                    <p>Added by: Unknown</p>
+                    {% endif %}
+                    <p>Debug - Added by Object: {{ item.added_by }}</p>
+                </li>
                 {% endfor %}
             </ul>
         </div>

@@ -55,6 +55,8 @@ def add_item(request):
         item_form = ItemForm(request.POST, prefix='item')
         if item_form.is_valid():
             item = item_form.save()
+            item.added_by = request.user
+            item.save()
             if item.quantity < item.reorder_threshold:
                 Notification.objects.filter(item=item).delete()
                 Notification.objects.create(
@@ -71,7 +73,7 @@ def add_item(request):
 
 def item_list(request):
     items = Item.objects.all()
-    return render(request, 'item_list.html', {'items': items})
+    return render(request, 'item_list.html', {'items': items}, {'Added by': item.added_by})
 
 def item_detail(request, item_id):
     item = get_object_or_404(Item, id=item_id)

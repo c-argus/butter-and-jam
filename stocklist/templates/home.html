@@ -32,7 +32,7 @@
       {% if items %}
       <!-- Table to display item list -->
       <div class="tableWrapper">
-        <table class="table">
+        <table class="table no-border-box">
           <!-- Table header section -->
           <thead>
             <!-- Table row for column headings -->
@@ -41,6 +41,7 @@
               <th scope="col" class="nameColumn">Name</th> <!-- Name column -->
               <th scope="col">Price</th> <!-- Price column -->
               <th scope="col">Quantity</th> <!-- Quantity column -->
+              <th scope="col">User</th> <!-- Added by column -->
               {% if user.is_staff %}
               <th scope="col" colspan="2" class="textCenter">Actions</th> <!-- Actions column -->
               {% endif %}
@@ -56,6 +57,13 @@
               <td scope="row" class="nameColumn">{{ item.name }}</td> <!-- Display item name -->
               <td scope="row">&euro;{{ item.price }}</td> <!-- Display item price with euro sign -->
               <td scope="row" class="textCenter">{{ item.quantity }}</td> <!-- Display item quantity -->
+              <td scope="row">
+                {% if item.added_by %}
+                {{ item.added_by.username }}
+                {% else %}
+                Unknown
+                {% endif %}
+              </td> <!-- Display added by user -->
               <!-- Edit button -->
               {% if user.is_staff%}
               <td scope="row">

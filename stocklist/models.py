@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.contrib.auth.models import User
 
 # Create your models here.
 # Create two models, one for Item and one for Quantity
@@ -13,9 +14,8 @@ class Item(models.Model):
     quantity = models.PositiveIntegerField(default=0)
     reorder_level = models.PositiveIntegerField(default=0)  # Add reorder_level field to Item model
     status = models.BooleanField(default=True)  # Add status field (True for active, False for inactive)
-
-    # Threshold for reordering the item, must be a positive integer
     reorder_threshold = models.PositiveIntegerField(default=5, validators=[MinValueValidator(1)])
+    added_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return f"{self.name} (Price: €{self.price}, Quantity: {self.quantity})"
