@@ -1,14 +1,88 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Register</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabare StockList</title>
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/common.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/register.css' %}">
 </head>
+
 <body>
-    <h2>Register</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Register</button>
+    <div class="top-right-btn"><a href="{% url 'login' %}">Back to Login</a></div>
+    <div class="background" style="background-image: url({% static 'images/coffee_pattern.jpg' %})"></div>
+    <div class="container">
+        <div class="content">
+            <h3 class="title">Register</h3>
+            <form method="post" class="row g-3 needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="col-md-6">
+                    <label for="validationCustomUsername" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="validationCustomUsername" name="username" required>
+                    <div class="invalid-feedback">
+                        Please choose a username.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustomEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="validationCustomEmail" name="email" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid email address.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustomPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="validationCustomPassword" name="password" required>
+                    <div class="invalid-feedback">
+                        Please provide a password.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustomConfirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="validationCustomConfirmPassword"
+                        name="confirm_password" required>
+                    <div class="invalid-feedback">
+                        Please confirm your password.
+                    </div>
+                </div>
+                <div class="col-12">
+
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-default" type="submit">Submit form</button>
+                </div>
+        </div>
+    </div>
     </form>
+    <script src="{% static 'scripts/bootstrap.bundle.js' %}"></script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+
 </body>
+
 </html>

@@ -5,3 +5,16 @@
     border-radius: 10px;
     box-shadow: 3px 3px 20px 0px #0000003b;
 }
+
+.top-right-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #6f4e37;
+    /* Coffee-brown background */
+    color: #6f4e37;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}
