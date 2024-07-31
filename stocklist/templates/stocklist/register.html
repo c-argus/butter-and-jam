@@ -17,47 +17,46 @@
     <div class="background" style="background-image: url({% static 'images/coffee_pattern.jpg' %})"></div>
     <div class="container">
         <div class="content">
-            <h3 class="title">Register</h3>
+            <h3 class="title">Sign Up</h3>
             <form method="post" class="row g-3 needs-validation" novalidate>
                 {% csrf_token %}
-                <div class="col-md-6">
+                <div class="col-12">
                     <label for="validationCustomUsername" class="form-label">Username</label>
                     <input type="text" class="form-control" id="validationCustomUsername" name="username" required>
                     <div class="invalid-feedback">
                         Please choose a username.
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-12">
                     <label for="validationCustomEmail" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="validationCustomEmail" name="email" required>
                     <div class="invalid-feedback">
                         Please provide a valid email address.
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-12">
                     <label for="validationCustomPassword" class="form-label">Password</label>
                     <input type="password" class="form-control" id="validationCustomPassword" name="password" required>
                     <div class="invalid-feedback">
                         Please provide a password.
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-12">
                     <label for="validationCustomConfirmPassword" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="validationCustomConfirmPassword"
-                        name="confirm_password" required>
+                    <input type="password" class="form-control" id="validationCustomConfirmPassword" name="confirm_password" required>
                     <div class="invalid-feedback">
                         Please confirm your password.
                     </div>
                 </div>
                 <div class="col-12">
-
+                    <!-- Additional content can be added here if needed -->
                 </div>
                 <div class="col-12">
                     <button class="btn btn-default" type="submit">Submit form</button>
                 </div>
+            </form>
         </div>
     </div>
-    </form>
     <script src="{% static 'scripts/bootstrap.bundle.js' %}"></script>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -81,8 +80,6 @@
                 })
         })()
     </script>
-
-
 </body>
 
 </html>
