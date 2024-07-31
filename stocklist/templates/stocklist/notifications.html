@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <div class="top-right-btn"><a href="{% url 'home' %}">Home</a></div>
     <div class="background" style="background-image: url({% static '/images/coffee_pattern.jpg' %});"></div>
     <div class="container">
         <div class="content">
@@ -70,8 +71,7 @@
             <p>No notifications available</p>
             {% endif %}
 
-            <!-- Link to go back to the home page -->
-            <a href="{% url 'home' %}" class="btn btn-default">Back to Home</a>
+
         </div>
     </div>
     <script>
