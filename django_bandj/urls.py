@@ -16,11 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from stocklist import views
-from stocklist.views import home, add_item, edit_item, delete_item, notifications
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.home, name='register'),
+    path('', views.home, name='home'),
     path('register/', views.register, name='register'),
     path('admin/', admin.site.urls),
     path('home/', views.home, name='home'),
@@ -29,8 +28,8 @@ urlpatterns = [
     path('add/', views.add_item, name='add_item'),
     path('item/<int:item_id>/edit/', views.edit_item, name='edit_item'),
     path('item/<int:item_id>/delete/', views.delete_item, name='delete_item'),
-    path('notifications/', notifications, name='notifications'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='stoklist/logout.html'), name='logout'),
+    path('notifications/', views.notifications, name='notifications'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='stocklist/logout.html'), name='logout'),
     path('login/', views.custom_login, name='login'),
     path('notifications/mark_as_read/<int:notification_id>/', views.mark_notification_as_read, name='mark_notification_as_read'),
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
@@ -38,6 +37,7 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]
+
 
 
 

@@ -7,8 +7,6 @@ from django.contrib.auth import authenticate, login
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-
-from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 
 def register(request):
@@ -18,13 +16,15 @@ def register(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
+            messages.success(request, 'Registration successful. Please log in.')
             return redirect('login')
+        else:
+            messages.error(request, 'There was an error with your registration.')
     else:
         form = UserRegistrationForm()
 
     return render(request, 'stocklist/register.html', {'form': form})
 
-# Custom login view
 def custom_login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -32,8 +32,10 @@ def custom_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, 'Login successful.')
             return redirect('home')
         else:
+            messages.error(request, 'Invalid username or password')
             return render(request, 'stocklist/login.html', {'error': 'Invalid username or password'})
     else:
         return render(request, 'stocklist/login.html')
@@ -51,7 +53,6 @@ def home(request):
 @login_required
 def add_item(request):
     price_error = None
-    success_message = None
 
     if request.method == 'POST':
         item_form = ItemForm(request.POST, prefix='item')
@@ -74,19 +75,20 @@ def add_item(request):
                         item=item,
                         message=f"The stock for {item.name} has fallen below the reorder threshold."
                     )
-                success_message = 'Item added successfully'
-                messages.success(request, success_message)
                 return redirect('home')
         else:
             messages.error(request, 'There was an error adding the item')
     else:
         item_form = ItemForm(prefix='item')
 
-    return render(request, 'add_item.html', {'item_form': item_form, 'price_error': price_error, 'success_message': success_message})
+    return render(request, 'add_item.html', {'item_form': item_form, 'price_error': price_error})
 
+
+
+@login_required
 def item_list(request):
     items = Item.objects.all()
-    return render(request, 'item_list.html', {'items': items}, {'Added by': item.added_by})
+    return render(request, 'item_list.html', {'items': items})
 
 def item_detail(request, item_id):
     item = get_object_or_404(Item, id=item_id)
@@ -96,7 +98,8 @@ def item_detail(request, item_id):
 @login_required
 def edit_item(request, item_id):
     user = request.user
-    if not user.is_staff : return redirect('home')
+    if not user.is_staff:
+        return redirect('home')
     item = get_object_or_404(Item, id=item_id)
     if request.method == 'POST':
         item_form = ItemForm(request.POST, instance=item, prefix='item')
@@ -108,7 +111,6 @@ def edit_item(request, item_id):
                     item=item,
                     message=f"The stock for {item.name} has fallen below the reorder threshold."
                 )
-            
             messages.success(request, 'Item updated successfully')
             return redirect('home')
         else:
@@ -120,7 +122,8 @@ def edit_item(request, item_id):
 @login_required
 def delete_item(request, item_id):
     user = request.user
-    if not user.is_staff : return redirect('home')
+    if not user.is_staff:
+        return redirect('home')
     item = get_object_or_404(Item, id=item_id)
     item.delete()
     messages.success(request, 'Item deleted successfully')
@@ -129,7 +132,8 @@ def delete_item(request, item_id):
 @login_required
 def notifications(request):
     user = request.user
-    if not user.is_staff : return redirect('home')
+    if not user.is_staff:
+        return redirect('home')
     notifications = Notification.objects.all()
     return render(request, 'stocklist/notifications.html', {'notifications': notifications})
 
@@ -141,8 +145,9 @@ def mark_notification_as_read(request, notification_id):
     notification.read = True
     notification.save()
     data = {
-        'message': 'item updated successfully',
+        'message': 'Notification marked as read',
     }
     return JsonResponse(data)
+
 
 

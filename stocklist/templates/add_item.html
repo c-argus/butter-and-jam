@@ -24,6 +24,20 @@
           </div>
         </div>
       </div>
+
+      <!-- Display error messages -->
+      {% if messages %}
+      <div class="col-12">
+        {% for message in messages %}
+        {% if message.tags == 'error' %}
+        <div class="alert alert-danger">
+          {{ message }}
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+
       <form method="post">
         {% csrf_token %}
         <div class="row gy-3 overflow-hidden">
@@ -56,20 +70,6 @@
               <button class="btn btn-default btn-lg" type="submit">Add Item</button>
             </div>
           </div>
-          {% if success_message %}
-          <div class="col-12">
-            <div class="alert alert-success mt-3">
-              <p>{{ success_message }}</p>
-            </div>
-          </div>
-          {% endif %}
-          {% if error %}
-          <div class="col-12">
-            <div class="alert alert-danger mt-3">
-              <p>{{ error }}</p>
-            </div>
-          </div>
-          {% endif %}
         </div>
       </form>
     </div>

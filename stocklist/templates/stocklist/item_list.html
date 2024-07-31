@@ -7,28 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item List</title>
-    <link rel="stylesheet" href="{% static '/styles/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static '/styles/items_list.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
 </head>
 
 <body>
     <div class="container">
-        <div class="content">
-            <h1>Item List</h1>
-            <ul>
-                {% for item in items %}
-                <li>
-                    <p>{{ item.name }} - {{ item.price|floatformat:2 }} EUR</p>
-                    {% if item.added_by %}
-                    <p>Added by: {{ item.added_by.username }}</p>
-                    {% else %}
-                    <p>Added by: Unknown</p>
-                    {% endif %}
-                    <p>Debug - Added by Object: {{ item.added_by }}</p>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+        <h1>Item List</h1>
+        <ul>
+            {% for item in items %}
+            <li>{{ item.name }} - {{ item.price }} - {{ item.quantity }}</li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 
