@@ -24,7 +24,6 @@ def register(request):
 
     return render(request, 'stocklist/register.html', {'form': form})
 
-
 # Custom login view
 def custom_login(request):
     if request.method == 'POST':
@@ -51,25 +50,39 @@ def home(request):
 
 @login_required
 def add_item(request):
+    price_error = None
+    success_message = None
+
     if request.method == 'POST':
         item_form = ItemForm(request.POST, prefix='item')
         if item_form.is_valid():
-            item = item_form.save()
-            item.added_by = request.user
-            item.save()
-            if item.quantity < item.reorder_threshold:
-                Notification.objects.filter(item=item).delete()
-                Notification.objects.create(
-                    item=item,
-                    message=f"The stock for {item.name} has fallen below the reorder threshold."
-                )
-            messages.success(request, 'Item added successfully')
-            return redirect('home')
+            item_price = request.POST.get('item-price')
+            try:
+                item_price = float(item_price)
+                if item_price < 0:
+                    price_error = "Price cannot be negative."
+            except ValueError:
+                price_error = "Invalid price format."
+
+            if not price_error:
+                item = item_form.save(commit=False)
+                item.added_by = request.user
+                item.save()
+                if item.quantity < item.reorder_threshold:
+                    Notification.objects.filter(item=item).delete()
+                    Notification.objects.create(
+                        item=item,
+                        message=f"The stock for {item.name} has fallen below the reorder threshold."
+                    )
+                success_message = 'Item added successfully'
+                messages.success(request, success_message)
+                return redirect('home')
         else:
             messages.error(request, 'There was an error adding the item')
     else:
         item_form = ItemForm(prefix='item')
-    return render(request, 'add_item.html', {'item_form': item_form})
+
+    return render(request, 'add_item.html', {'item_form': item_form, 'price_error': price_error, 'success_message': success_message})
 
 def item_list(request):
     items = Item.objects.all()
