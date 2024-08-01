@@ -19,7 +19,14 @@
       <div class="d-flex justify-content-between align-items-center">
         <span class="welcome">Hello, {{ user.username }}</span>
         <div>
-          <a href="{% url 'notifications' %}" class="btn btn-default"><img src="{% static 'images/bell.svg' %}"></a>
+          <a href="{% url 'notifications' %}" class="btn btn-default position-relative">
+            <img src="{% static 'images/bell.svg' %}">
+            {% if unread_notifications_count > 0 %}
+            <span class="badge badge-pink position-absolute top-0 start-100 translate-middle">
+              {{ unread_notifications_count }}
+            </span>
+            {% endif %}
+          </a>
           <a href="{% url 'logout' %}" class="logout btn btn-default">Logout</a>
         </div>
       </div>
@@ -27,6 +34,7 @@
 
     <div class="content mt-5">
       <h3>Items list</h3>
+
       {% if user.is_staff %}
       <!-- Additional staff-related content can go here -->
       {% endif %}

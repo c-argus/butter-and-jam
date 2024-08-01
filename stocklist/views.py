@@ -44,9 +44,11 @@ def custom_login(request):
 def home(request):
     items = Item.objects.all()
     user = request.user
+    unread_notifications_count = Notification.objects.filter(read=False).count()
     context = {
         'items': items,
-        'user': user
+        'user': user,
+        'unread_notifications_count': unread_notifications_count
     }
     return render(request, 'home.html', context)
 

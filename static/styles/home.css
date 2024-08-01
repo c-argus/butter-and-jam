@@ -16,6 +16,13 @@
     left: 0;
 }
 
+
+.badge-pink {
+    background-color: #ff69b4;
+    /* A nice pink color */
+    color: white;
+}
+
 .content {
     width: 550px;
     background: #f5f3f3;
