@@ -28,7 +28,9 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY', 'sinixtro@14*17')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+# DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = False
+X_FRAME_OPTIONS = "SAMEORIGIN"
 
 ALLOWED_HOSTS = [
     '8000-cargus-butterandjam-2izmz6gbrk3.ws.codeinstitute-ide.net', 
