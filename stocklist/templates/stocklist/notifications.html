@@ -1,27 +1,27 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Butter and Jam?</title>
-    <link rel="stylesheet" href="{% static '/styles/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static '/styles/common.css' %}">
-    <link rel="stylesheet" href="{% static '/styles/notifications.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/common.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/notifications.css' %}">
 </head>
 
 <body>
     <div class="top-right-btn"><a href="{% url 'home' %}">Home</a></div>
     <div class="background" style="background-image: url({% static '/images/coffee_pattern.jpg' %});"></div>
     <div class="container">
-        <div class="content">
+        <div class="content mt-5">
             <h3>Notifications</h3>
             <!-- Check if there are any notifications -->
             {% if notifications %}
             <!-- Table to display notifications -->
-            <div class="tableWrapper">
+            <div class="table-responsive">
                 <table class="table">
                     <!-- Table header section -->
                     <thead>
@@ -48,19 +48,15 @@
                             <!-- Display creation date -->
                             <td scope="row">
                                 {% if notification.read %}
-                                <span class="statusRead">
-                                    Read
-                                </span>
+                                <span class="statusRead">Read</span>
                                 {% else %}
-                                <span class="statusUnread">
-                                    Unread
-                                </span>
+                                <span class="statusUnread">Unread</span>
                                 {% endif %}
                             </td> <!-- Display read status -->
-                            <td scope="row"><button class="markAsReadButton btn btn-default"
-                                    data-id="{{notification.id}}">Mark
-                                    as
-                                    read</button></td>
+                            <td scope="row">
+                                <button class="markAsReadButton btn btn-default" data-id="{{notification.id}}">Mark as
+                                    read</button>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -70,28 +66,27 @@
             <!-- Display message if no notifications are available -->
             <p>No notifications available</p>
             {% endif %}
-
-
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('Ready!')
-            const buttonELs = [...document.querySelectorAll('.markAsReadButton')]
-            buttonELs.forEach(buttonEl => {
+            console.log('Ready!');
+            const buttonEls = [...document.querySelectorAll('.markAsReadButton')];
+            buttonEls.forEach(buttonEl => {
                 buttonEl.addEventListener('click', async (e) => {
-                    console.log('markAsReadButton!!',)
+                    console.log('markAsReadButton!!');
                     const notificationId = e.target.dataset.id;
                     const response = await fetch(`/notifications/mark_as_read/${notificationId}/`, {
                         method: "POST",
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                    })
-                    location.reload()
-                })
+                    });
+                    location.reload();
+                });
             });
-        })
+        });
     </script>
 </body>
 
