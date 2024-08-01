@@ -31,8 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'sinixtro@14*17')
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = [
-    '8000-cargus-butterandjam-y1bphadsj75.ws-eu110.gitpod.io',  
-    '8000-cargus-butterandjam-tpeeej391a8.ws.codeinstitute-ide.net', 
+    '8000-cargus-butterandjam-2izmz6gbrk3.ws.codeinstitute-ide.net', 
     'cabare-stocklist-bandj-64bab33316f2.herokuapp.com'
 ]
 
@@ -85,16 +84,16 @@ WSGI_APPLICATION = 'django_bandj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
-
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+#DATABASES = {
+#    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+# }
 
 
 # Password validation

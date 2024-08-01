@@ -1,76 +1,69 @@
+<!-- templates/home.html -->
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Butter and Jam?</title>
-  <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
-  <link rel="stylesheet" href="{% static 'styles/common.css' %}">
-  <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+  <link rel="stylesheet" href="{% static '/styles/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static '/styles/common.css' %}">
+  <link rel="stylesheet" href="{% static '/styles/home.css' %}">
 </head>
 
 <body>
-  <div class="background" style="background-image: url({% static 'images/coffee_pattern.jpg' %});"></div>
+  <header class="header">
+    <span class="welcome">Hello, {{ user.username }}</span>
+    <div>
+      <a href="{% url 'notifications' %}" class="btn btn-default"><img src="{% static '/images/bell.svg' %}"></a>
+      <a href="{% url 'logout' %}" class="logout btn btn-default">Logout</a>
+    </div>
+  </header>
+  <div class="background" style="background-image: url({% static '/images/coffee_pattern.jpg' %});"></div>
   <div class="container">
-    <header class="header">
-      <div class="d-flex justify-content-between align-items-center">
-        <span class="welcome">Hello, {{ user.username }}</span>
-        <div>
-          <a href="{% url 'notifications' %}" class="btn btn-default position-relative">
-            <img src="{% static 'images/bell.svg' %}">
-            {% if unread_notifications_count > 0 %}
-            <span class="badge badge-pink position-absolute top-0 start-100 translate-middle">
-              {{ unread_notifications_count }}
-            </span>
-            {% endif %}
-          </a>
-          <a href="{% url 'logout' %}" class="logout btn btn-default">Logout</a>
-        </div>
-      </div>
-    </header>
-
-    <div class="content mt-5">
+    <div class="content">
+      <!-- Link to notifications page -->
       <h3>Items list</h3>
-
       {% if user.is_staff %}
-      <!-- Additional staff-related content can go here -->
       {% endif %}
-
+      <!-- Check if items are available -->
       {% if items %}
-      <div class="table-responsive">
+      <!-- Table to display item list -->
+      <div class="tableWrapper">
         <table class="table">
+          <!-- Table header section -->
           <thead>
+            <!-- Table row for column headings -->
             <tr>
-              <th scope="col" class="nameColumn">Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">User</th>
+              <!-- Column headings -->
+              <th scope="col" class="nameColumn">Name</th> <!-- Name column -->
+              <th scope="col">Price</th> <!-- Price column -->
+              <th scope="col">Quantity</th> <!-- Quantity column -->
               {% if user.is_staff %}
-              <th scope="col" colspan="2" class="text-center">Actions</th>
+              <th scope="col" colspan="2" class="textCenter">Actions</th> <!-- Actions column -->
               {% endif %}
             </tr>
           </thead>
+          <!-- Table body section -->
           <tbody>
+            <!-- Iterate over each item -->
             {% for item in items %}
+            <!-- Table row for each item -->
             <tr>
-              <td class="nameColumn">{{ item.name }}</td>
-              <td>&euro;{{ item.price }}</td>
-              <td class="text-center">{{ item.quantity }}</td>
-              <td>
-                {% if item.added_by %}
-                {{ item.added_by.username }}
-                {% else %}
-                Unknown
-                {% endif %}
-              </td>
-              {% if user.is_staff %}
-              <td>
+              <!-- Item details columns -->
+              <td scope="row" class="nameColumn">{{ item.name }}</td> <!-- Display item name -->
+              <td scope="row">&euro;{{ item.price }}</td> <!-- Display item price with euro sign -->
+              <td scope="row" class="textCenter">{{ item.quantity }}</td> <!-- Display item quantity -->
+              <!-- Edit button -->
+              {% if user.is_staff%}
+              <td scope="row">
                 <a href="{% url 'edit_item' item.id %}" class="btn btn-default">Edit</a>
               </td>
-              <td>
+              {% endif %}
+              {% if user.is_staff%}
+              <td scope="row">
                 <a href="{% url 'delete_item' item.id %}" class="btn btn-default">Delete</a>
               </td>
               {% endif %}
@@ -80,14 +73,15 @@
         </table>
       </div>
       {% else %}
+      <!-- Display message if no items available -->
       <p>No items available</p>
       {% endif %}
-
-      <div class="mt-4">
-        <a href="{% url 'add_item' %}" class="btn btn-default">Add an Item</a>
-      </div>
+      <!-- Add a link to the add_item page -->
+      <a href="{% url 'add_item' %}" class="btn btn-default">Add an Item</a>
     </div>
   </div>
+  <!-- Page title -->
+
 </body>
 
 </html>
