@@ -1,0 +1,41 @@
+.tableWrapper {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.nameColumn {
+    width: 200px;
+}
+
+.welcome {
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
+.badge-pink {
+    background-color: #ff69b4;
+    /* A nice pink color */
+    color: white;
+}
+
+.content {
+    width: 550px;
+    background: #f5f3f3;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 20px 0px #0000003b;
+}
+
+.table td,
+.table th {
+    background: transparent;
+}
+
+.textCenter {
+    text-align: center;
+}

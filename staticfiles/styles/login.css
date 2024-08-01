@@ -1,0 +1,46 @@
+/* login.css */
+.content {
+    background: #f5f3f3;
+    width: 100%;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 20px 0px #0000003b;
+    margin: 0 auto;
+}
+
+.top-right-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #6f4e37;
+    /* Coffee-brown background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}
+
+.card {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.btn-primary {
+    background-color: #6f4e37;
+    border-color: #6f4e37;
+}
+
+.btn-primary:hover {
+    background-color: #5a3e2d;
+    border-color: #5a3e2d;
+}
+
+.form-check-input:checked {
+    background-color: #6f4e37;
+    border-color: #6f4e37;
+}
