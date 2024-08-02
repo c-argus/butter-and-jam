@@ -9,52 +9,45 @@
     <title>Butter and Jam?</title>
     <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'styles/common.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
     <link rel="stylesheet" href="{% static 'styles/notifications.css' %}">
 </head>
 
 <body>
-    <div class="top-right-btn"><a href="{% url 'home' %}">Home</a></div>
-    <div class="background" style="background-image: url({% static '/images/coffee_pattern.jpg' %});"></div>
-    <div class="container">
+    <div class="background" style="background-image: url({% static 'images/coffee_pattern.jpg' %});"></div>
+    <div class="top-right-btn btn home-btn"><a href="{% url 'home' %}">Home</a></div>
+
+    <div class="container footer-container">
         <div class="content mt-5">
             <h3>Notifications</h3>
-            <!-- Check if there are any notifications -->
             {% if notifications %}
-            <!-- Table to display notifications -->
             <div class="table-responsive">
                 <table class="table">
-                    <!-- Table header section -->
                     <thead>
-                        <!-- Table row for column headings -->
                         <tr>
-                            <!-- Column headings -->
-                            <th scope="col">Item Name</th> <!-- Item column -->
-                            <th scope="col">Message</th> <!-- Message column -->
-                            <th scope="col">Created At</th> <!-- Created At column -->
-                            <th scope="col">Status</th> <!-- Read column -->
-                            <th scope="col">Action</th> <!-- Read column -->
+                            <th scope="col">Item Name</th>
+                            <th scope="col">Message</th>
+                            <th scope="col">Created At</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <!-- Table body section -->
                     <tbody>
-                        <!-- Iterate over each notification -->
                         {% for notification in notifications %}
-                        <!-- Table row for each notification -->
                         <tr>
-                            <!-- Notification details columns -->
-                            <td scope="row">{{ notification.item.name }}</td> <!-- Display item name -->
-                            <td scope="row">{{ notification.message }}</td> <!-- Display notification message -->
+                            <td scope="row">{{ notification.item.name }}</td>
+                            <td scope="row">{{ notification.message }}</td>
                             <td scope="row"><span class="date">{{ notification.created_at }}</span></td>
-                            <!-- Display creation date -->
                             <td scope="row">
                                 {% if notification.read %}
                                 <span class="statusRead">Read</span>
                                 {% else %}
                                 <span class="statusUnread">Unread</span>
                                 {% endif %}
-                            </td> <!-- Display read status -->
+                            </td>
                             <td scope="row">
-                                <button class="markAsReadButton btn btn-default" data-id="{{notification.id}}">Mark as
+                                <button class="markAsReadButton btn btn-default" data-id="{{notification.id}}">Mark
+                                    as
                                     read</button>
                             </td>
                         </tr>
@@ -63,10 +56,15 @@
                 </table>
             </div>
             {% else %}
-            <!-- Display message if no notifications are available -->
             <p>No notifications available</p>
             {% endif %}
         </div>
+
+        <footer class="footer mt-5 py-3">
+            <div class="text-center">
+                <span class="text-muted">&copy; 2024 Butter and Jam Coffee Shop</span>
+            </div>
+        </footer>
     </div>
 
     <script>
@@ -83,11 +81,16 @@
                             'Content-Type': 'application/json',
                         },
                     });
-                    location.reload();
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        console.error('Error marking as read');
+                    }
                 });
             });
         });
     </script>
+
 </body>
 
 </html>

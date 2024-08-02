@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'sinixtro@14*17')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get('DEBUG', 'True') == 'True'
-DEBUG = False
+DEBUG = True
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
 ALLOWED_HOSTS = [

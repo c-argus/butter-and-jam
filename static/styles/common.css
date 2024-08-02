@@ -46,3 +46,8 @@
     border: 1px solid #f2c9a5;
     color: black;
 }
+
+.home-btn {
+    padding: 10px;
+    position: fixed;
+}

@@ -9,13 +9,15 @@
     <title>Cabare StockList</title>
     <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'styles/common.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
     <link rel="stylesheet" href="{% static 'styles/register.css' %}">
 </head>
 
 <body>
-    <div class="top-right-btn"><a href="{% url 'login' %}">Back to Login</a></div>
     <div class="background" style="background-image: url({% static 'images/coffee_pattern.jpg' %})"></div>
-    <div class="container">
+    <div class="top-right-btn btn home-btn"><a href="{% url 'login' %}">Back to Login</a></div>
+
+    <div class="container footer-container">
         <div class="content">
             <h3 class="title">Sign Up</h3>
             <form method="post" class="row g-3 needs-validation" novalidate>
@@ -43,7 +45,8 @@
                 </div>
                 <div class="col-12">
                     <label for="validationCustomConfirmPassword" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="validationCustomConfirmPassword" name="confirm_password" required>
+                    <input type="password" class="form-control" id="validationCustomConfirmPassword"
+                        name="confirm_password" required>
                     <div class="invalid-feedback">
                         Please confirm your password.
                     </div>
@@ -56,6 +59,12 @@
                 </div>
             </form>
         </div>
+
+        <footer class="footer mt-5 py-3">
+            <div class="text-center">
+                <span class="text-muted">&copy; 2024 Butter and Jam Coffee Shop</span>
+            </div>
+        </footer>
     </div>
     <script src="{% static 'scripts/bootstrap.bundle.js' %}"></script>
     <script>
