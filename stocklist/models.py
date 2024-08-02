@@ -18,7 +18,7 @@ class Item(models.Model):
     added_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.name} (Price: €{self.price}, Quantity: {self.quantity})"
+        return f"{self.name} (Price: €{self.price:.2f}, Quantity: {self.quantity})"
 
     def needs_reorder(self):
         # Determines if the item needs to be reordered based on its current quantity and the associated reorder threshold.
