@@ -30,6 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'sinixtro@14*17')
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 DEBUG = True
+
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
 ALLOWED_HOSTS = [
@@ -157,4 +158,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SECURE_SSL_REDIRECT = True
+
