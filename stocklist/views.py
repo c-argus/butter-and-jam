@@ -90,12 +90,12 @@ def add_item(request):
 @login_required
 def item_list(request):
     items = Item.objects.all()
-    return render(request, 'item_list.html', {'items': items})
+    return render(request, 'stocklist/item_list.html', {'items': items})
 
 def item_detail(request, item_id):
     item = get_object_or_404(Item, id=item_id)
     needs_reorder = item.needs_reorder()
-    return render(request, 'item_detail.html', {'item': item, 'needs_reorder': needs_reorder})
+    return render(request, 'stocklist/item_detail.html', {'item': item, 'needs_reorder': needs_reorder})
 
 @login_required
 def edit_item(request, item_id):

@@ -11,14 +11,12 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Item List</h1>
-        <ul>
-            {% for item in items %}
-            <li>{{ item.name }} - {{ item.price }} - {{ item.quantity }}</li>
-            {% endfor %}
-        </ul>
-    </div>
+    <h1>Item List</h1>
+    <ul>
+        {% for item in items %}
+        <li>{{ item.name }} - ${{ item.price }} - Quantity: {{ item.quantity }}</li>
+        {% endfor %}
+    </ul>
 </body>
 
 </html>
