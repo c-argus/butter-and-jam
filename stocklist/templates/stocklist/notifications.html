@@ -1,102 +1,83 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Butter and Jam?</title>
-    <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/common.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/notifications.css' %}">
-</head>
+{% block title %}Notifications - Butter and Jam{% endblock %}
 
-<body>
-    <div class="background" style="background-image: url({% static 'images/coffee_pattern.jpg' %});"></div>
-    <div class="top-right-btn btn home-btn"><a href="{% url 'home' %}">Home</a></div>
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'styles/notifications.css' %}">
+{% endblock %}
 
-    <div class="container footer-container">
-        <div class="content mt-5">
-            <h3>Notifications</h3>
-            {% if notifications %}
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Item Name</th>
-                            <th scope="col">Message</th>
-                            <th scope="col">Created At</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for notification in notifications %}
-                        <tr>
-                            <td scope="row">{{ notification.item.name }}</td>
-                            <td scope="row">{{ notification.message }}</td>
-                            <td scope="row"><span class="date">{{ notification.created_at }}</span></td>
-                            <td scope="row">
-                                {% if notification.read %}
-                                <span class="statusRead">Read</span>
-                                {% else %}
-                                <span class="statusUnread">Unread</span>
-                                {% endif %}
-                            </td>
-                            <td scope="row">
-                                <button class="markAsReadButton btn btn-default" data-id="{{notification.id}}">Mark
-                                    as
-                                    read</button>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            {% else %}
-            <p>No notifications available</p>
-            {% endif %}
+{% block content %}
+<div class="container footer-container">
+    <div class="content mt-5">
+        <h3>Notifications</h3>
+        {% if notifications %}
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Message</th>
+                        <th scope="col">Created At</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for notification in notifications %}
+                    <tr>
+                        <td scope="row">{{ notification.item.name }}</td>
+                        <td scope="row">{{ notification.message }}</td>
+                        <td scope="row"><span class="date">{{ notification.created_at }}</span></td>
+                        <td scope="row">
+                            {% if notification.read %}
+                            <span class="statusRead">Read</span>
+                            {% else %}
+                            <span class="statusUnread">Unread</span>
+                            {% endif %}
+                        </td>
+                        <td scope="row">
+                            <button class="markAsReadButton btn btn-default" data-id="{{notification.id}}">Mark
+                                as
+                                read</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-
-        <footer class="footer mt-5 py-3">
-            <div class="text-center">
-                <span class="text-muted">&copy; 2024 Butter and Jam Coffee Shop</span>
-            </div>
-        </footer>
+        {% else %}
+        <p>No notifications available</p>
+        {% endif %}
     </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            'use strict';
-            console.log('Ready!');
-            const buttonEls = Array.from(document.querySelectorAll('.markAsReadButton'));
-            buttonEls.forEach(function (buttonEl) {
-                buttonEl.addEventListener('click', async function (e) {
-                    console.log('markAsReadButton!!');
-                    const notificationId = e.target.dataset.id;
-                    try {
-                        const response = await fetch(`/notifications/mark_as_read/${notificationId}/`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        });
-                        if (response.ok) {
-                            location.reload();
-                        } else {
-                            console.error('Error marking as read');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        'use strict';
+        console.log('Ready!');
+        const buttonEls = Array.from(document.querySelectorAll('.markAsReadButton'));
+        buttonEls.forEach(function (buttonEl) {
+            buttonEl.addEventListener('click', async function (e) {
+                console.log('markAsReadButton!!');
+                const notificationId = e.target.dataset.id;
+                try {
+                    const response = await fetch(`/notifications/mark_as_read/${notificationId}/`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
                         }
-                    } catch (error) {
-                        console.error('Fetch error:', error);
+                    });
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        console.error('Error marking as read');
                     }
-                });
+                } catch (error) {
+                    console.error('Fetch error:', error);
+                }
             });
         });
-    </script>
-
-
-</body>
-
-</html>
+    });
+</script>
+{% endblock %}
