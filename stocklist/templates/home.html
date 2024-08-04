@@ -7,72 +7,74 @@
 <div class="content mt-5">
   <h3>Items List</h3>
   <div>
-    <table class="table">
-      <!-- Display messages -->
-      {% if messages %}
-      <div class="col-12">
-        {% for message in messages %}
-        {% if message.tags == 'error' %}
-        <div class="alert alert-danger">
-          {{ message }}
-        </div>
-        {% elif message.tags == 'success' %}
-        <div class="alert alert-success">
-          {{ message }}
-        </div>
-        {% endif %}
-        {% endfor %}
+    <!-- Display messages -->
+    {% if messages %}
+    <div class="col-12">
+      {% for message in messages %}
+      {% if message.tags == 'error' %}
+      <div class="alert alert-danger">
+        {{ message }}
+      </div>
+      {% elif message.tags == 'success' %}
+      <div class="alert alert-success">
+        {{ message }}
       </div>
       {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
 
-      {% if items %}
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col" class="nameColumn">Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">User</th>
-              {% if user.is_staff %}
-              <th scope="col" colspan="2" class="text-center">Actions</th>
+    {% if items %}
+    <div class="table-responsive">
+      <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+          <tr>
+            <th scope="col" class="nameColumn">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">User</th>
+            {% if user.is_staff %}
+            <th scope="col" colspan="2" class="text-center">Actions</th>
+            {% endif %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr>
+            <td class="nameColumn">
+              <div class="ms-3">
+                <p class="fw-bold mb-1">{{ item.name }}</p>
+              </div>
+            </td>
+            <td>&euro;{{ item.price }}</td>
+            <td class="text-center">{{ item.quantity }}</td>
+            <td>
+              {% if item.added_by %}
+              {{ item.added_by.username }}
+              {% else %}
+              Unknown
               {% endif %}
-            </tr>
-          </thead>
-          <tbody>
-            {% for item in items %}
-            <tr>
-              <td class="nameColumn">{{ item.name }}</td>
-              <td>&euro;{{ item.price }}</td>
-              <td class="text-center">{{ item.quantity }}</td>
-              <td>
-                {% if item.added_by %}
-                {{ item.added_by.username }}
-                {% else %}
-                Unknown
-                {% endif %}
-              </td>
-              {% if user.is_staff %}
-              <td>
-                <a href="{% url 'edit_item' item.id %}" class="btn btn-default">Edit</a>
-              </td>
-              <td>
-                <a href="{% url 'delete_item' item.id %}" class="btn btn-default">Delete</a>
-              </td>
-              {% endif %}
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-      {% else %}
-      <p>No items available</p>
-      {% endif %}
+            </td>
+            {% if user.is_staff %}
+            <td>
+              <a href="{% url 'edit_item' item.id %}" class="btn btn-link btn-sm btn-rounded">Edit</a>
+            </td>
+            <td>
+              <a href="{% url 'delete_item' item.id %}" class="btn btn-link btn-sm btn-rounded">Delete</a>
+            </td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p>No items available</p>
+    {% endif %}
 
-      <div class="mt-4">
-        <a href="{% url 'add_item' %}" class="btn btn-default">Add an Item</a>
-      </div>
+    <div class="mt-4">
+      <a href="{% url 'add_item' %}" class="btn btn-default">Add an Item</a>
+    </div>
   </div>
-</div>
 </div>
 {% endblock %}
