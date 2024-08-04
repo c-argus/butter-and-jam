@@ -13,11 +13,6 @@
     box-shadow: 3px 3px 20px 0px #0000003b;
 }
 
-.table td,
-.table th {
-    background: transparent;
-}
-
 .date,
 .markAsReadButton {
     text-wrap: nowrap;

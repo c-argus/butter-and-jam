@@ -16,11 +16,12 @@
                     <a class="nav-link" href="{% url 'add_item' %}">Add Item</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'notifications' %}" class="nav-link position-relative">
-                        <img src="{% static 'images/bell.svg' %}" class="me-1">
+                    <a class="nav-link position-relative" href="{% url 'notifications' %}">
+                        Notifications
                         {% if unread_notifications_count > 0 %}
-                        <span class="badge badge-white position-absolute top-0 start-100 translate-middle">
+                        <span class="badge badge-pink position-absolute top-0 start-100 translate-middle">
                             {{ unread_notifications_count }}
+
                         </span>
                         {% endif %}
                     </a>

@@ -11,7 +11,7 @@
     z-index: -1;
     width: 100vw;
     height: 100vh;
-    /* background-size: 240px;
+    ;
 }
 
 .content {
@@ -44,9 +44,9 @@
 }
 
 .btn-default:hover {
-    background-color: #f2c9a5;
-    border: 1px solid #f2c9a5;
-    color: black;
+    background-color: #be9672;
+    border: 1px solid #be9672;
+    color: white;
     opacity: 0.7;
 }
 
@@ -66,14 +66,14 @@ body {
 }
 
 .navbar-custom {
-    background-color: #6f4e37;
+    background-color: #6F4E37;
     color: #f8f9fa;
 }
 
 .navbar-custom .nav-link,
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
-    color: #f8f9fa;
+    color: #000000;
 }
 
 .navbar-custom .nav-link:hover,
@@ -94,11 +94,11 @@ body {
 }
 
 .navbar .badge-white {
-    background-color: white;
-    color: pink;
+    background-color: #ffc0cb;
+    color: #873a6e;
     font-size: 0.75rem;
     font-weight: bold;
-    border: 1px solid pink;
+    border: 1px solid #873a6e;
 }
 
 .navbar .position-relative img {
@@ -107,27 +107,27 @@ body {
 }
 
 .table-responsive {
-    overflow-x: auto;
+    overflow-x: scroll;
 }
 
 .table th,
 .table td {
-    color: #f8f9fa;
+    color: #000000;
 }
 
 .table th {
-    background-color: #6f4e37;
-    border-bottom: 2px solid #6f4e37;
+    background-color: #6f4e37a6;
+
 }
 
 .table td {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(245 243 243);
     border-top: 1px solid #6f4e37;
 }
 
 .btn-default {
-    background-color: #f0ad4e;
-    color: white;
+    background-color: #6F4E37;
+    color: rgb(0, 0, 0);
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
@@ -137,7 +137,8 @@ body {
 }
 
 .btn-default:hover {
-    background-color: #ec971f;
+    background-color: #7e5010d0;
+    border: #7e5010d0;
 }
 
 .alert {

@@ -13,8 +13,8 @@
         <h3>Notifications</h3>
         {% if notifications %}
         <div class="table-responsive">
-            <table class="table">
-                <thead>
+            <table class="table align-middle mb-0 bg-white">
+                <thead class="bg-light">
                     <tr>
                         <th scope="col">Item Name</th>
                         <th scope="col">Message</th>
@@ -31,15 +31,14 @@
                         <td scope="row"><span class="date">{{ notification.created_at }}</span></td>
                         <td scope="row">
                             {% if notification.read %}
-                            <span class="statusRead">Read</span>
+                            <span class="statusRead badge badge-success rounded-pill d-inline">Read</span>
                             {% else %}
-                            <span class="statusUnread">Unread</span>
+                            <span class="statusUnread badge badge-warning rounded-pill d-inline">Unread</span>
                             {% endif %}
                         </td>
                         <td scope="row">
-                            <button class="markAsReadButton btn btn-default" data-id="{{notification.id}}">Mark
-                                as
-                                read</button>
+                            <button class="markAsReadButton btn btn-link btn-sm btn-rounded"
+                                data-id="{{notification.id}}">Mark as read</button>
                         </td>
                     </tr>
                     {% endfor %}
