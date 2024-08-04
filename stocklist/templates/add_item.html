@@ -1,88 +1,64 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cabare StockList</title>
-  <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
-  <link rel="stylesheet" href="{% static 'styles/common.css' %}">
-  <link rel="stylesheet" href="{% static 'styles/footer.css' %}">
-  <link rel="stylesheet" href="{% static 'styles/add_item.css' %}">
-</head>
+{% block title %}Add Item - Butter and Jam{% endblock %}
 
-<body>
-  <div class="background" style="background-image: url({% static 'images/coffee_pattern.jpg' %})"></div>
-  <div class="top-right-btn btn home-btn"><a href="{% url 'home' %}">Home</a></div>
+{% block content %}
+<div class="content mt-5">
+  <h3>Add Item</h3>
+  <div>
+    <table class="table">
+      <!-- Display messages -->
+      {% if messages %}
+      <div class="col-12">
+        {% for message in messages %}
+        {% if message.tags == 'error' %}
+        <div class="alert alert-danger">
+          {{ message }}
+        </div>
+        {% elif message.tags == 'success' %}
+        <div class="alert alert-success">
+          {{ message }}
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
 
-  <div class="container footer-container">
-    <div class="content mt-5">
-      <h3>Add Item</h3>
-      <div>
-        <table class="table">
-          <!-- Display messages -->
-          {% if messages %}
+      <form method="post">
+        {% csrf_token %}
+        <div class="row gy-3 overflow-hidden">
           <div class="col-12">
-            {% for message in messages %}
-            {% if message.tags == 'error' %}
-            <div class="alert alert-danger">
-              {{ message }}
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="item-name" id="id_item-name" maxlength="200" required
+                placeholder="Name">
+              <label for="id_item-name" class="form-label">Name</label>
             </div>
-            {% elif message.tags == 'success' %}
-            <div class="alert alert-success">
-              {{ message }}
-            </div>
-            {% endif %}
-            {% endfor %}
           </div>
-          {% endif %}
-
-          <form method="post">
-            {% csrf_token %}
-            <div class="row gy-3 overflow-hidden">
-              <div class="col-12">
-                <div class="form-floating mb-3">
-                  <input type="text" class="form-control" name="item-name" id="id_item-name" maxlength="200" required
-                    placeholder="Name">
-                  <label for="id_item-name" class="form-label">Name</label>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-floating mb-3">
-                  <input type="number" class="form-control" name="item-price" id="id_item-price" step="0.01" required
-                    placeholder="Price">
-                  <label for="id_item-price" class="form-label">Price</label>
-                  {% if price_error %}
-                  <div class="text-danger mt-2">{{ price_error }}</div>
-                  {% endif %}
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-floating mb-3">
-                  <input type="number" class="form-control" name="item-quantity" id="id_item-quantity" value="0" min="0"
-                    required placeholder="Quantity">
-                  <label for="id_item-quantity" class="form-label">Quantity</label>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="d-grid">
-                  <button class="btn btn-default btn-lg" type="submit">Add Item</button>
-                </div>
-              </div>
+          <div class="col-12">
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" name="item-price" id="id_item-price" step="0.01" required
+                placeholder="Price">
+              <label for="id_item-price" class="form-label">Price</label>
+              {% if price_error %}
+              <div class="text-danger mt-2">{{ price_error }}</div>
+              {% endif %}
             </div>
-          </form>
-        </table>
-      </div>
-    </div>
-
-    <footer class="footer mt-5 py-3">
-      <div class="text-center">
-        <span class="text-muted">&copy; 2024 Butter and Jam Coffee Shop</span>
-      </div>
-    </footer>
+          </div>
+          <div class="col-12">
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" name="item-quantity" id="id_item-quantity" value="0" min="0"
+                required placeholder="Quantity">
+              <label for="id_item-quantity" class="form-label">Quantity</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="d-grid">
+              <button class="btn btn-default btn-lg" type="submit">Add Item</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </table>
   </div>
-</body>
-
-</html>
+</div>
+{% endblock %}
