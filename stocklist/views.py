@@ -25,6 +25,7 @@ def register(request):
 
     return render(request, 'stocklist/register.html', {'form': form})
 
+
 def custom_login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -32,13 +33,14 @@ def custom_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, 'Login successful.')
+            
             return redirect('home')
         else:
-            messages.error(request, 'Invalid username or password')
-            return render(request, 'stocklist/login.html', {'error': 'Invalid username or password'})
+            messages.error(request, 'Invalid username or password.')
+            return redirect('login')
     else:
         return render(request, 'stocklist/login.html')
+
 
 @login_required
 def home(request):
@@ -77,7 +79,8 @@ def add_item(request):
                         item=item,
                         message=f"The stock for {item.name} has fallen below the reorder threshold."
                     )
-                return redirect('home')
+                messages.success(request, 'Item added with success')
+                return redirect('add_item')  # Redirect to the same page to clear the form and show the message
         else:
             messages.error(request, 'There was an error adding the item')
     else:
@@ -121,6 +124,8 @@ def edit_item(request, item_id):
         item_form = ItemForm(instance=item, prefix='item')
     return render(request, 'edit_item.html', {'item_form': item_form})
 
+
+
 @login_required
 def delete_item(request, item_id):
     user = request.user
@@ -130,6 +135,7 @@ def delete_item(request, item_id):
     item.delete()
     messages.success(request, 'Item deleted successfully')
     return redirect('home')
+    
 
 @login_required
 def notifications(request):

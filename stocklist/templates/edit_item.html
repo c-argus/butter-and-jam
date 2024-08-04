@@ -1,7 +1,6 @@
 {% load static %}
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -21,6 +20,24 @@
     <div class="container footer-container">
         <div class="content">
             <h3 class="title">Edit Item</h3>
+
+            <!-- Display messages -->
+            {% if messages %}
+            <div class="col-12">
+                {% for message in messages %}
+                {% if message.tags == 'error' %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+                {% elif message.tags == 'success' %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
             <form method="post">
                 {% csrf_token %}
                 <div class="mb-3">

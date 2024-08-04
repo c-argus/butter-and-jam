@@ -1,12 +1,12 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Butter and Jam?</title>
+  <title>Butter and Jam</title>
   <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
   <link rel="stylesheet" href="{% static 'styles/common.css' %}">
   <link rel="stylesheet" href="{% static 'styles/home.css' %}">
@@ -20,6 +20,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <span class="welcome">Hello, {{ user.username }}</span>
         <div>
+          {% if user.is_staff %}
           <a href="{% url 'notifications' %}" class="btn btn-default position-relative">
             <img src="{% static 'images/bell.svg' %}">
             {% if unread_notifications_count > 0 %}
@@ -28,6 +29,7 @@
             </span>
             {% endif %}
           </a>
+          {% endif %}
           <a href="{% url 'logout' %}" class="logout btn btn-default">Logout</a>
         </div>
       </div>
@@ -35,6 +37,22 @@
 
     <div class="content mt-5">
       <h3>Items list</h3>
+
+      {% if messages %}
+      <div class="col-12">
+        {% for message in messages %}
+        {% if message.tags == 'error' %}
+        <div class="alert alert-danger">
+          {{ message }}
+        </div>
+        {% elif message.tags == 'success' %}
+        <div class="alert alert-success">
+          {{ message }}
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
 
       {% if user.is_staff %}
       <!-- Additional staff-related content can go here -->
@@ -92,12 +110,9 @@
     <footer class="footer mt-5 py-3">
       <div class="text-center">
         <span class="text-muted">&copy; 2024 Butter and Jam Coffee Shop</span>
-
       </div>
     </footer>
   </div>
-
-
 </body>
 
 </html>

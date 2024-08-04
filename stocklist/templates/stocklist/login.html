@@ -16,7 +16,7 @@
 
 <body>
     <div class="background" style="background-image: url({% static 'images/coffee_pattern.jpg' %})"></div>
-    <div class="container footer-container">
+    <div class="container footer-container login-container">
         <div class="row gy-4 align-items-center">
             <div class="col-12 col-md-6 col-xl-7">
                 <div class="d-flex justify-content-center">
@@ -68,11 +68,20 @@
                                     <button class="btn btn-default btn-lg" type="submit">Log in now</button>
                                 </div>
                             </div>
-                            {% if error %}
+                            <!-- Display messages -->
+                            {% if messages %}
                             <div class="col-12">
-                                <div class="alert alert-danger mt-3">
-                                    <p>{{ error }}</p>
+                                {% for message in messages %}
+                                {% if message.tags == 'error' %}
+                                <div class="alert alert-danger">
+                                    {{ message }}
                                 </div>
+                                {% elif message.tags == 'success' %}
+                                <div class="alert alert-success">
+                                    {{ message }}
+                                </div>
+                                {% endif %}
+                                {% endfor %}
                             </div>
                             {% endif %}
                         </div>

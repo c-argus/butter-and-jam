@@ -20,6 +20,24 @@
     <div class="container footer-container">
         <div class="content">
             <h3 class="title">Sign Up</h3>
+
+            <!-- Display messages -->
+            {% if messages %}
+            <div class="col-12">
+                {% for message in messages %}
+                {% if message.tags == 'error' %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+                {% elif message.tags == 'success' %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
             <form method="post" class="row g-3 needs-validation" novalidate>
                 {% csrf_token %}
                 <div class="col-12">
