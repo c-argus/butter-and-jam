@@ -8,6 +8,10 @@
     margin: 0 auto;
 }
 
+.login-container {
+    margin: 0 auto;
+}
+
 .top-right-btn {
     position: absolute;
     top: 10px;
