@@ -77,7 +77,7 @@ def add_item(request):
                     Notification.objects.filter(item=item).delete()
                     Notification.objects.create(
                         item=item,
-                        message=f"The stock for {item.name} has fallen below the reorder threshold."
+                        message=f"The stock for {item.name}  is now below the reorder point."
                     )
                 messages.success(request, 'Item added with success')
                 return redirect('add_item')  # Redirect to the same page to clear the form and show the message

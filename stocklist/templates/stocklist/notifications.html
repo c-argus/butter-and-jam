@@ -4,21 +4,21 @@
 {% block title %}Notifications - Butter and Jam{% endblock %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'styles/notifications.css' %}">
+
 {% endblock %}
 
 {% block content %}
-<div class="container footer-container">
-    <div class="content mt-5">
-        <h3>Notifications</h3>
+<div class="content home-box mt-5">
+    <h3>Notifications</h3>
+    <div>
         {% if notifications %}
         <div class="table-responsive">
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
                     <tr>
-                        <th scope="col">Item Name</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Message</th>
-                        <th scope="col">Created At</th>
+                        <th scope="col">Created</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -26,18 +26,24 @@
                 <tbody>
                     {% for notification in notifications %}
                     <tr>
-                        <td scope="row">{{ notification.item.name }}</td>
-                        <td scope="row">{{ notification.message }}</td>
-                        <td scope="row"><span class="date">{{ notification.created_at }}</span></td>
-                        <td scope="row">
+                        <td>
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">{{ notification.item.name }}</p>
+                            </div>
+                        </td>
+                        <td>{{ notification.message }}</td>
+                        <td>
+                            <span class="date">{{ notification.created_at }}</span>
+                        </td>
+                        <td>
                             {% if notification.read %}
-                            <span class="statusRead badge badge-success rounded-pill d-inline">Read</span>
+                            <span class="badge badge-success statusRead rounded-pill d-inline">Read</span>
                             {% else %}
-                            <span class="statusUnread badge badge-warning rounded-pill d-inline">Unread</span>
+                            <span class="badge badge-warning statusUnread rounded-pill d-inline">Unread</span>
                             {% endif %}
                         </td>
-                        <td scope="row">
-                            <button class="markAsReadButton btn btn-link btn-sm btn-rounded"
+                        <td>
+                            <button class="btn btn-link btn-sm btn-rounded markAsReadButton"
                                 data-id="{{notification.id}}">Mark as read</button>
                         </td>
                     </tr>

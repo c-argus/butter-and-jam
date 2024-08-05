@@ -9,7 +9,7 @@ body {
     width: 100vw;
     height: 100vh;
 
-    /* background-size: 240px;
+    /* background-size: 240px;*/
 }
 
 .navbar-custom {
@@ -54,40 +54,40 @@ body {
 }
 
 /* Additional styles for form and table elements */
-    .table-responsive {
-        overflow-x: auto;
-    }
+.table-responsive {
+    overflow-x: auto;
+}
 
-    .table th,
-    .table td {
-        color: #f8f9fa;
-    }
+.table th,
+.table td {
+    color: #f8f9fa;
+}
 
-    .table th {
-        background-color: #6f4e37;
-        border-bottom: 2px solid #6f4e37;
-    }
+.table th {
+    background-color: #6f4e37;
+    border-bottom: 2px solid #6f4e37;
+}
 
-    .table td {
-        background-color: rgba(0, 0, 0, 0.5);
-        border-top: 1px solid #6f4e37;
-    }
+.table td {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top: 1px solid #6f4e37;
+}
 
-    .btn-default {
-        background-color: #f0ad4e;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        text-align: center;
-        display: inline-block;
-    }
+.btn-default {
+    background-color: #f0ad4e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+}
 
 
-    .btn-default:hover {
-        background-color: #ec971f;
-    }
+.btn-default:hover {
+    background-color: #ec971f;
+}
 }
 
 .alert {
