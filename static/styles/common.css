@@ -199,3 +199,7 @@ body {
 .markAsReadButton {
     text-wrap: nowrap;
 }
+
+.login-container .content {
+    width: 550px;
+}
