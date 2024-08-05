@@ -43,6 +43,7 @@ ALLOWED_HOSTS = [
     'cabare-stocklist-bandj-64bab33316f2.herokuapp.com'
 ]
 
+SITE_ID = 1
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'home'
 
@@ -94,7 +95,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_bandj.wsgi.application'
 
-SITE_ID = 1
+
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -165,8 +166,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.codeinstitute-ide.net/",
-    "https://*.herokuapp.com",
-    "http://127.0.0.1:8000",
-    "https://*.gitpod.io"
+    "https://8000-cargus-butterandjam-2izmz6gbrk3.ws.codeinstitute-ide.net/",
+    "https://*.herokuapp.com"
 ]
+
