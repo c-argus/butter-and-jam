@@ -167,6 +167,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [
     "https://8000-cargus-butterandjam-2izmz6gbrk3.ws.codeinstitute-ide.net",
-    "https://*.herokuapp.com"
+    "https://herokuapp.com"
 ]
 
