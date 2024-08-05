@@ -23,9 +23,6 @@
 
 }
 
-.home-box {
-    box-sizing: content-box;
-}
 
 
 @media (min-width: 768px) {
@@ -43,9 +40,12 @@
     position: absolute;
     right: 20px;
     top: 0;
+
 }
 
-.header .logout {
+
+
+box-sizing: border-box .header .logout {
     margin-left: 5px;
 }
 
