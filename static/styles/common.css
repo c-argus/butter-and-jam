@@ -43,12 +43,6 @@
 
 }
 
-
-
-box-sizing: border-box .header .logout {
-    margin-left: 5px;
-}
-
 .btn-default:hover {
     background-color: #be9672;
     border: 1px solid #be9672;
