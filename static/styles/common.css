@@ -15,7 +15,7 @@
 }
 
 .content {
-    width: 100%;
+    width: 700px;
     background: #f5f3f3;
     padding: 22px;
     border-radius: 10px;
@@ -23,11 +23,9 @@
 
 }
 
-
-
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .content {
-        width: 400px;
+        width: 100%;
     }
 }
 
@@ -73,7 +71,7 @@ body {
 .navbar-custom .nav-link,
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
-    color: #000000;
+    color: #ffffff;
 }
 
 .navbar-custom .nav-link:hover,
@@ -106,18 +104,29 @@ body {
     height: 20px;
 }
 
-.table-responsive {
-    overflow-x: scroll;
+.navbar .bars {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
-.table th,
+.navbar .bars .bar {
+    width: 26px;
+    height: 3px;
+    background-color: white;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
 .table td {
     color: #000000;
 }
 
 .table th {
     background-color: #6f4e37a6;
-
+    color: white;
 }
 
 .table td {
@@ -127,7 +136,7 @@ body {
 
 .btn-default {
     background-color: #6F4E37;
-    color: rgb(0, 0, 0);
+    color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
@@ -184,4 +193,9 @@ body {
 
 .textCenter {
     text-align: center;
+}
+
+.date,
+.markAsReadButton {
+    text-wrap: nowrap;
 }
