@@ -94,6 +94,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_bandj.wsgi.application'
 
+SITE_ID = 1
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
