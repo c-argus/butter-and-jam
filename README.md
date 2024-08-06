@@ -37,6 +37,12 @@ The project is a coffee shop stocklist application. Utilizing Django, JavaScript
     * [NEON](#neon)
     * [Whitenoise](#whitenoise)
     * [Deployment](#deploying-to-heroku)
+* [Features](#features)
+    * [Login Page](#login-page)
+    * [Register Page](#register-page)
+    * [Home Page](#home-page)
+    * [Add Item Page](#add-item-page)
+    * [Notifications Page](#notifications-page)
 * [Testing]
 * [Bugs]
 * [Credits]
@@ -182,39 +188,46 @@ os.environ['SECRET_KEY'] = '<create_your_secret_key>'
 Whitenoise is a library that helps serve static files in your Django application. 
 It allows your web application to handle static files (like CSS, JavaScript, and images) efficiently without needing a separate web server.
 
-* To install Whitenoise:
-```pip3 install whitenoise```
+*To install Whitenoise:
+    ```bash
+    pip3 install whitenoise
+    ```
 
-* To configure Whitenoise:
-Add 'whitenoise.middleware.WhiteNoiseMiddleware' to the MIDDLEWARE array in your settings.py file:
+*To configure Whitenoise:
+    Add `'whitenoise.middleware.WhiteNoiseMiddleware'` to the `MIDDLEWARE` array in your `settings.py` file:
+    ```python
+    MIDDLEWARE = [
+        # Other middleware classes
+        'whitenoise.middleware.WhiteNoiseMiddleware',
+    ]
+    ```
 
-```MIDDLEWARE = [
+*Set up static file handling in `settings.py`:
+    ```python
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    ```
 
-    # Other middleware classes
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-]
-```
+*Final steps:
 
-* Set up static file handling in settings.py:
+    *Collect static files:
+    This command gathers all static files from your apps and places them in the directory specified by `STATIC_ROOT`.
+    ```bash
+    python manage.py collectstatic
+    ```
 
-```STATIC_URL = '/static/'
+    *Run migrations:
+    This command applies any database migrations.
+    ```bash
+    python manage.py migrate
+    ```
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-```
+    *Launch the Django development server:
+    This command starts the development server so you can see your changes.
+    ```bash
+    python manage.py runserver
+    ```
 
-* Final steps:
-
-* Collect static files:
-This command gathers all static files from your apps and places them in the directory specified by STATIC_ROOT.
-```python manage.py collectstatic```
-
-* Run migrations:
-This command applies any database migrations.
-```python manage.py migrate```
-
-* Launch the Django development server:
-This command starts the development server so you can see your changes.
-```python manage.py runserver```
 
 ### Deploying to Heroku
 * Create the Heroku app
@@ -252,6 +265,62 @@ As a result, I created an account with [Neon](https://neon.tech/) instead.
 4. Verify the Deployment
    - Once the app is successfully deployed, a confirmation message will appear.
    - Click on the "View" button to open your app and verify that it’s running correctly.
+
+
+## Features
+
+### Login Page
+The login page allows users to sign in to access the inventory management features of the application.
+**Username and Password Input:** Users can enter their username and password to authenticate.
+**Remember Me Option:** Users have the option to stay logged in across sessions with a "Remember Me" checkbox.
+
+The page dynamically displays error or success messages based on the login attempt's outcome.
+**Error Messages:** Displayed in red to alert users of invalid login attempts or other issues.
+**Success Messages:** Displayed in green to notify users of successful actions.
+
+Users who do not have an account can easily navigate to the registration page via a provided link.
+![LoginFeatures](static/images/Flogin.png)
+
+### Register Page
+The register page allows new users to create an account to access the inventory management features of the application.
+**Username, Email, and Password Input**: Users can enter their username, email address, password, and confirm their password to register.
+
+The page dynamically displays error or success messages based on the registration attempt's outcome.
+**Error Messages:** Displayed in red to alert users of invalid inputs or other registration issues.
+**Success Messages:** Displayed in green to notify users of successful registration.
+![RegisterFeatures](static/images/FRegister.png)
+
+## Home Page
+The home page displays the list of items available in the inventory of the application.
+**Item List Display:** Shows a table of items with details including name, price, quantity, and the user who added the item.
+Actions for Managerial Members: Managerial embers have options to edit or delete items and view the low stock alert notifications.
+
+The page dynamically displays error or success messages based on actions taken on the items.
+**Error Messages:** Displayed in red to alert users of issues.
+**Success Messages:** Displayed in green to notify users of successful actions.
+![HomeFeatures](static/images/FHome.png)
+
+## Add Item Page
+The add item page allows users to input details of a new item to be added to the inventory of the application.
+
+**Item Details Input**: Users can enter the name, price, and quantity of the new item.
+
+The page dynamically displays error or success messages based on the item addition attempt's outcome.
+**Error Messages:** Displayed in red to alert users of invalid inputs or other issues.
+**Success Messages:** Displayed in green to notify users of successful item addition.
+![AddFeatures](static/images/FAdd.png)
+
+## Notifications Page
+The notifications page displays a list of notifications related to the inventory management activities of the application.
+
+**Notification Details Display:** Shows a table of notifications with details including item name, message, creation date, status, and an action to mark notifications as read.
+
+The page dynamically displays the notifications if available, and provides feedback on their status.
+![NotificationFeatures](static/images/FNotification.png)
+
+
+
+
 
 
 
