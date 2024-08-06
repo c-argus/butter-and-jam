@@ -145,14 +145,12 @@ This template helps streamline the setup process by including pre-configured set
 
 2. Install Django
 Next, you need to install Django. Use the following command to ensure you install a compatible version of Django:
-```pip3 install 'django<4'
-```
+```pip3 install 'django<4'```
 This command will install the latest version of Django that is less than version 4.
 
 3. Create Django Project
 Once Django is installed, you can create your new Django project. Execute the following command to initialize your project:
-```django-admin startproject <django_bandj>
-```
+```django-admin startproject <django_bandj>```
 
 ### NEON 
 
