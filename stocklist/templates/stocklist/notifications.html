@@ -63,26 +63,30 @@
         console.log('Ready!');
         const buttonEls = Array.from(document.querySelectorAll('.markAsReadButton'));
         buttonEls.forEach(function (buttonEl) {
-            buttonEl.addEventListener('click', async function (e) {
-                console.log('markAsReadButton!!');
-                const notificationId = e.target.dataset.id;
-                try {
-                    const response = await fetch(`/notifications/mark_as_read/${notificationId}/`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
+            buttonEl.addEventListener('click', function (e) {
+                (async function () {
+                    console.log('markAsReadButton!!');
+                    const notificationId = e.target.dataset.id;
+                    try {
+                        const response = await fetch(`/notifications/mark_as_read/${notificationId}/`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        });
+                        if (response.ok) {
+                            location.reload();
+                        } else {
+                            console.error('Error marking as read');
                         }
-                    });
-                    if (response.ok) {
-                        location.reload();
-                    } else {
-                        console.error('Error marking as read');
+                    } catch (error) {
+                        console.error('Fetch error:', error);
                     }
-                } catch (error) {
-                    console.error('Fetch error:', error);
-                }
+                })();
             });
         });
     });
 </script>
+
+
 {% endblock %}

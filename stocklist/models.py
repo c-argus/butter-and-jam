@@ -2,14 +2,9 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from django.contrib.auth.models import User
 
-# Create your models here.
-# Create two models, one for Item and one for Quantity
-# Model Item has the quantity of each item.
-# Quantity is of type PositiveIntegerField to ensure the quantity value won't be negative
-
+# Model for Item
 class Item(models.Model):
     name = models.CharField(max_length=200, null=False, blank=False, unique=True)
-    # description = models.TextField(null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, validators=[MinValueValidator(0.01)])
     quantity = models.PositiveIntegerField(default=0)
     reorder_level = models.PositiveIntegerField(default=0)  # Add reorder_level field to Item model
@@ -32,6 +27,8 @@ class Item(models.Model):
                 message=f"The stock for {self.name} has fallen below the reorder threshold of {self.reorder_threshold}."
             )
 
+
+# Model for Notification
 class Notification(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE) # ForeignKey to link the notification to a specific item. When the item is deleted, the notification is also deleted.
     message = models.TextField()
