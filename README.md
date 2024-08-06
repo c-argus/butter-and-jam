@@ -36,7 +36,7 @@ The project is a coffee shop stocklist application. Utilizing Django, JavaScript
     * [Django](#django)
     * [NEON](#neon)
     * [Whitenoise](#whitenoise)
-    * [Deployment]
+    * [Deployment](#deploying-to-heroku)
 * [Testing]
 * [Bugs]
 * [Credits]
@@ -216,7 +216,46 @@ This command applies any database migrations.
 This command starts the development server so you can see your changes.
 ```python manage.py runserver```
 
-### Deployment
+### Deploying to Heroku
+* Create the Heroku app
+1. Log in to your Heroku account;
+2. Click the New button in the top right corner;
+3. Choose a name for your project. This must be unique. Select the region closest to you. Confirm by clicking Create app.
+
+* Create a database
+Code Institute recommends creating an account with ElephantSQL for database management. 
+However, ElephantSQL has announced on their homepage that they will be going offline in January 2025. 
+As a result, I created an account with [Neon](https://neon.tech/) instead.
+
+* Connecting the database to our app
+1. in Heroku, go to the Settings tab;
+2. Click Reveal Config Vars;
+3. Add a Config Var called DATABASE_URL. Paste your database URL in as the value.
+
+* Deploy Your App on Heroku
+1. Navigate to the Deploy Tab
+   - In your Heroku dashboard, select your app.
+   - Go to the "Deploy" tab in the app's dashboard.
+
+2. Connect to GitHub
+   - Under the "Deployment method" section, choose "GitHub".
+   - Click on the "Connect to GitHub" button.
+   - If prompted, authorize Heroku to access your GitHub account.
+   - Search for the repository you want to deploy and click "Connect".
+
+3. Deploy Your Branch Manually
+   - Scroll down to the "Manual deploy" section.
+   - Ensure the "main" branch is selected (or choose the branch you want to deploy).
+   - Click on the "Deploy Branch" button.
+   - Wait for the deployment process to complete.
+
+4. Verify the Deployment
+   - Once the app is successfully deployed, a confirmation message will appear.
+   - Click on the "View" button to open your app and verify that it’s running correctly.
+
+
+
+
 
 
 
