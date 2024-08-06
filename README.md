@@ -62,17 +62,17 @@ As a barista or manager I can log out of my account so that I can ensure my acco
 ## Wireframes
 To create the wireframes I used [Balsamic](https://balsamiq.com/). It helped me visualize the design before I started to build the website.
 #### Wireframe of the login page
-![W - Login](/workspace/butter-and-jam/static/images/W - Login.png)
+![Login](static/images/Login.png)
 #### Wireframe of the user registration page
-![W - Register](/workspace/butter-and-jam/static/images/W - Register.png)
+![Register](static/images/Register.png)
 #### Wireframe of the home page
-![W - Home](/workspace/butter-and-jam/static/images/W - Home.png)
+![Home](static/images/Home.png)
 #### Wireframe of the add new item page
-![W - Add](/workspace/butter-and-jam/static/images/W - Add.png)
+![Add](static/images/Add.png)
 #### Wireframe of the edit item page
-![W - Edit](/workspace/butter-and-jam/static/images/W - Edit.png)
+![Edit](static/images/Edit.png)
 #### Wireframe of the notifications page
-![W - Notifications](/workspace/butter-and-jam/static/images/W - Notifications.png)
+![Notifications](static/images/Notifications.png)
 
 
 
