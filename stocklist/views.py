@@ -12,6 +12,7 @@ from .models import Item, Notification
 
 
 def register(request):
+    """Handle user registration."""
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -33,6 +34,7 @@ def register(request):
 
 
 def custom_login(request):
+    """Handle user login."""
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -49,10 +51,12 @@ def custom_login(request):
 
 @login_required
 def home(request):
+    """Render the home page."""
     items = Item.objects.all()
     user = request.user
     unread_notifications_count = Notification.objects.filter(
-        read=False).count()
+        read=False
+    ).count()
     context = {
         'items': items,
         'user': user,
@@ -63,6 +67,7 @@ def home(request):
 
 @login_required
 def add_item(request):
+    """Handle adding a new item."""
     price_error = None
 
     if request.method == 'POST':
@@ -98,28 +103,32 @@ def add_item(request):
 
     return render(
         request, 'add_item.html', {
-            'item_form': item_form, 'price_error': price_error}
+            'item_form': item_form, 'price_error': price_error
+        }
     )
 
 
 @login_required
 def item_list(request):
+    """Render the list of items."""
     items = Item.objects.all()
     return render(request, 'stocklist/item_list.html', {'items': items})
 
 
 def item_detail(request, item_id):
+    """Render the detail view of an item."""
     item = get_object_or_404(Item, id=item_id)
     needs_reorder = item.needs_reorder()
     return render(
         request, 'stocklist/item_detail.html', {
             'item': item, 'needs_reorder': needs_reorder
-            }
+        }
     )
 
 
 @login_required
 def edit_item(request, item_id):
+    """Handle editing an existing item."""
     user = request.user
     if not user.is_staff:
         return redirect('home')
@@ -148,6 +157,7 @@ def edit_item(request, item_id):
 
 @login_required
 def delete_item(request, item_id):
+    """Handle deleting an item."""
     user = request.user
     if not user.is_staff:
         return redirect('home')
@@ -159,20 +169,23 @@ def delete_item(request, item_id):
 
 @login_required
 def notifications(request):
+    """Render the notifications page."""
     user = request.user
     if not user.is_staff:
         return redirect('home')
     notifications = Notification.objects.all()
-    return render(request, 'stocklist/notifications.html', {
-        'notifications': notifications
-
-    })
+    return render(
+        request, 'stocklist/notifications.html', {
+            'notifications': notifications
+        }
+    )
 
 
 @require_POST
 @login_required
 @csrf_exempt
 def mark_notification_as_read(request, notification_id):
+    """Mark a notification as read."""
     notification = get_object_or_404(Notification, id=notification_id)
     notification.read = True
     notification.save()

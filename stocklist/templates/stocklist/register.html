@@ -6,7 +6,7 @@
 <div class="content">
     <h3 class="title">Sign Up</h3>
 
-    <!-- Display messages -->
+    <!-- Display messages for errors or success -->
     {% if messages %}
     <div class="col-12">
         {% for message in messages %}
@@ -23,9 +23,11 @@
     </div>
     {% endif %}
 
+    <!-- Registration form starts here -->
     <form method="post" class="row g-3 needs-validation" novalidate>
         {% csrf_token %}
         <div class="col-12">
+            <!-- Username input field -->
             <label for="validationCustomUsername" class="form-label">Username</label>
             <input type="text" class="form-control" id="validationCustomUsername" name="username" required>
             <div class="invalid-feedback">
@@ -33,6 +35,7 @@
             </div>
         </div>
         <div class="col-12">
+            <!-- Email address input field -->
             <label for="validationCustomEmail" class="form-label">Email address</label>
             <input type="email" class="form-control" id="validationCustomEmail" name="email" required>
             <div class="invalid-feedback">
@@ -40,6 +43,7 @@
             </div>
         </div>
         <div class="col-12">
+            <!-- Password input field -->
             <label for="validationCustomPassword" class="form-label">Password</label>
             <input type="password" class="form-control" id="validationCustomPassword" name="password" required>
             <div class="invalid-feedback">
@@ -47,6 +51,7 @@
             </div>
         </div>
         <div class="col-12">
+            <!-- Confirm password input field -->
             <label for="validationCustomConfirmPassword" class="form-label">Confirm Password</label>
             <input type="password" class="form-control" id="validationCustomConfirmPassword" name="confirm_password"
                 required>
@@ -58,6 +63,7 @@
             <!-- Additional content can be added here if needed -->
         </div>
         <div class="col-12">
+            <!-- Submit button -->
             <button class="btn btn-default" type="submit">Submit form</button>
         </div>
     </form>

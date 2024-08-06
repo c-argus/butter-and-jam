@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Notifications -  Cabare Stocklist{% endblock %}
+{% block title %}Notifications - Cabare Stocklist{% endblock %}
 
 {% block extra_head %}
-
+<!-- Additional head content can be added here if needed -->
 {% endblock %}
 
 {% block content %}
@@ -12,6 +12,7 @@
     <h3>Notifications</h3>
     <div>
         {% if notifications %}
+        <!-- If there are notifications, display them in a table -->
         <div class="table-responsive">
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
@@ -24,6 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Loop through each notification and display its details -->
                     {% for notification in notifications %}
                     <tr>
                         <td>
@@ -36,6 +38,7 @@
                             <span class="date">{{ notification.created_at }}</span>
                         </td>
                         <td>
+                            <!-- Display read/unread status -->
                             {% if notification.read %}
                             <span class="badge badge-success statusRead rounded-pill d-inline">Read</span>
                             {% else %}
@@ -43,6 +46,7 @@
                             {% endif %}
                         </td>
                         <td>
+                            <!-- Button to mark notification as read -->
                             <button class="btn btn-link btn-sm btn-rounded markAsReadButton"
                                 data-id="{{notification.id}}">Mark as read</button>
                         </td>
@@ -52,11 +56,13 @@
             </table>
         </div>
         {% else %}
+        <!-- If there are no notifications, display a message -->
         <p>No notifications available</p>
         {% endif %}
     </div>
 </div>
 
+<!-- JavaScript to handle the mark as read functionality -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         'use strict';
@@ -75,7 +81,7 @@
                             }
                         });
                         if (response.ok) {
-                            location.reload();
+                            location.reload(); // Reload the page if the request was successful
                         } else {
                             console.error('Error marking as read');
                         }
@@ -87,6 +93,5 @@
         });
     });
 </script>
-
 
 {% endblock %}

@@ -7,7 +7,7 @@
     <h3>Edit Item</h3>
     <div>
         <table class="table">
-            <!-- Display messages -->
+            <!-- Display messages for errors or success -->
             {% if messages %}
             <div class="col-12">
                 {% for message in messages %}
@@ -24,9 +24,11 @@
             </div>
             {% endif %}
 
+            <!-- Form to edit an existing item -->
             <form method="post">
                 {% csrf_token %}
                 <div class="row gy-3 overflow-hidden">
+                    <!-- Item name input field -->
                     <div class="col-12">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="item-name" id="id_item-name" maxlength="200"
@@ -34,6 +36,7 @@
                             <label for="id_item-name" class="form-label">Name</label>
                         </div>
                     </div>
+                    <!-- Item price input field -->
                     <div class="col-12">
                         <div class="form-floating mb-3">
                             <input type="number" class="form-control" name="item-price" id="id_item-price" step="0.01"
@@ -41,6 +44,7 @@
                             <label for="id_item-price" class="form-label">Price</label>
                         </div>
                     </div>
+                    <!-- Item quantity input field -->
                     <div class="col-12">
                         <div class="form-floating mb-3">
                             <input type="number" class="form-control" name="item-quantity" id="id_item-quantity"
@@ -48,6 +52,7 @@
                             <label for="id_item-quantity" class="form-label">Quantity</label>
                         </div>
                     </div>
+                    <!-- Submit button -->
                     <div class="col-12">
                         <div class="d-grid">
                             <button class="btn btn-default btn-lg" type="submit">Update Item</button>

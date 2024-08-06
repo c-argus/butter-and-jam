@@ -4,10 +4,13 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from stocklist.models import Item, Notification
 
+
 class ItemModelTest(TestCase):
 
     def setUp(self):
-        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.user = User.objects.create_user(
+            username='testuser', password='12345'
+        )
         self.item = Item.objects.create(
             name="Test Item",
             price=10.00,
@@ -19,11 +22,18 @@ class ItemModelTest(TestCase):
         )
 
     def test_string_representation(self):
-        item = Item(name="Sample Item", price=15.00, quantity=20)
-        self.assertEqual(str(item), "Sample Item (Price: €15.00, Quantity: 20)")
+        item = Item(
+            name="Sample Item", price=15.00, quantity=20
+        )
+        self.assertEqual(
+            str(item), "Sample Item (Price: €15.00, Quantity: 20)"
+        )
 
     def test_needs_reorder(self):
-        item = Item(name="Sample Item", price=15.00, quantity=3, reorder_threshold=5)
+        item = Item(
+            name="Sample Item", price=15.00, quantity=3,
+            reorder_threshold=5
+        )
         self.assertTrue(item.needs_reorder())
         item.quantity = 5
         self.assertFalse(item.needs_reorder())
@@ -49,12 +59,21 @@ class ItemModelTest(TestCase):
         item.save()
         notification = Notification.objects.filter(item=item).first()
         self.assertIsNotNone(notification)
-        self.assertEqual(notification.message, f"The stock for {item.name} has fallen below the reorder threshold of {item.reorder_threshold}.")
+        self.assertEqual(
+            notification.message,
+            (
+                f"The stock for {item.name} has fallen below the reorder "
+                f"threshold of {item.reorder_threshold}."
+            )
+        )
+
 
 class NotificationModelTest(TestCase):
 
     def setUp(self):
-        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.user = User.objects.create_user(
+            username='testuser', password='12345'
+        )
         self.item = Item.objects.create(
             name="Test Item",
             price=10.00,
@@ -70,7 +89,13 @@ class NotificationModelTest(TestCase):
         )
 
     def test_string_representation(self):
-        self.assertEqual(str(self.notification), f"Notification for {self.item.name}: {self.notification.message}")
+        self.assertEqual(
+            str(self.notification),
+            (
+                f"Notification for {self.item.name}: "
+                f"{self.notification.message}"
+            )
+        )
 
     def test_notification_creation(self):
         self.assertIsInstance(self.notification, Notification)

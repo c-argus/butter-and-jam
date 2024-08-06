@@ -13,53 +13,55 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
-from django.contrib.auth import views as auth_views
-from stocklist import views
 
+from django.contrib import admin  # Import the admin module from Django
+from django.urls import path  # Import the path function for URL routing
+# Import authentication views
+from django.contrib.auth import views as auth_views
+from stocklist import views  # Import views from the stocklist app
+
+# Define the URL patterns for the project
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', views.home, name='home'),  # Home page
+    # User registration page
     path('register/', views.register, name='register'),
-    path('admin/', admin.site.urls),
-    path('home/', views.home, name='home'),
-    path('items/', views.item_list, name='item_list'),
-    path('item/<int:item_id>/', views.item_detail, name='item_detail'),
-    path('add/', views.add_item, name='add_item'),
-    path('item/<int:item_id>/edit/', views.edit_item, name='edit_item'),
-    path('item/<int:item_id>/delete/', views.delete_item, name='delete_item'),
-    path('notifications/', views.notifications, name='notifications'),
+    path('admin/', admin.site.urls),  # Admin interface
+    path('home/', views.home, name='home'),  # Another home page URL
+    path('items/', views.item_list, name='item_list'),  # List of items
+    path(
+        'item/<int:item_id>/',
+        views.item_detail,
+        name='item_detail'
+    ),  # Item detail page
+    path('add/', views.add_item, name='add_item'),  # Add new item page
+    path(
+        'item/<int:item_id>/edit/',
+        views.edit_item,
+        name='edit_item'
+    ),  # Edit item page
+    path(
+        'item/<int:item_id>/delete/',
+        views.delete_item,
+        name='delete_item'
+    ),  # Delete item page
+    path(
+        'notifications/',
+        views.notifications,
+        name='notifications'
+    ),  # Notifications page
     path(
         'logout/',
-        auth_views.LogoutView.as_view(template_name='stocklist/logout.html'),
+        auth_views.LogoutView.as_view(
+            next_page='/'
+        ),
         name='logout'
-    ),
-    path('login/', views.custom_login, name='login'),
+    ),  # Logout page redirecting to home page
+    path('login/', views.custom_login, name='login'),  # Login page
     path(
         'notifications/mark_as_read/<int:notification_id>/',
         views.mark_notification_as_read,
         name='mark_notification_as_read'
-    ),
-    path(
-        'password_reset/',
-        auth_views.PasswordResetView.as_view(),
-        name='password_reset'
-    ),
-    path(
-        'password_reset/done/',
-        auth_views.PasswordResetDoneView.as_view(),
-        name='password_reset_done'
-    ),
-    path(
-        'reset/<uidb64>/<token>/',
-        auth_views.PasswordResetConfirmView.as_view(),
-        name='password_reset_confirm'
-    ),
-    path(
-        'reset/done/',
-        auth_views.PasswordResetCompleteView.as_view(),
-        name='password_reset_complete'
-    ),
+    ),  # Mark notification as read
 ]
 
 

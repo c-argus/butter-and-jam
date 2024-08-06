@@ -8,6 +8,7 @@
     <div class="col-12 col-md-6 col-xl-7">
       <div class="d-flex justify-content-center">
         <div class="col-12 col-xl-9">
+          <!-- Title and description of the inventory system -->
           <h2 class="h1 mb-4">Cabare StockList Inventory</h2>
           <p class="lead mb-5">Keep track of all your coffee shop essentials. Never miss a beat and keep your coffee
             shop running smoothly.</p>
@@ -19,21 +20,25 @@
         <div class="row">
           <div class="col-12">
             <div class="mb-4">
+              <!-- Sign-in heading and link to the registration page -->
               <h3>Sign in</h3>
               <p>Don't have an account? <a href="{% url 'register' %}">Sign up</a></p>
             </div>
           </div>
         </div>
+        <!-- Login form starts here -->
         <form method="post" action="{% url 'login' %}">
           {% csrf_token %}
           <div class="row gy-3 overflow-hidden">
             <div class="col-12">
+              <!-- Username input field -->
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
                 <label for="username" class="form-label">Username</label>
               </div>
             </div>
             <div class="col-12">
+              <!-- Password input field -->
               <div class="form-floating mb-3">
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password"
                   required>
@@ -41,17 +46,19 @@
               </div>
             </div>
             <div class="col-12">
+              <!-- Remember me checkbox -->
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
                 <label class="form-check-label text-secondary" for="remember_me">Keep me logged in</label>
               </div>
             </div>
             <div class="col-12">
+              <!-- Submit button -->
               <div class="d-grid">
                 <button class="btn btn-default btn-lg" type="submit">Log in now</button>
               </div>
             </div>
-            <!-- Display messages -->
+            <!-- Display messages for errors or success -->
             {% if messages %}
             <div class="col-12">
               {% for message in messages %}

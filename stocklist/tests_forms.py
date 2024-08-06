@@ -4,6 +4,7 @@ from django.test import TestCase
 from stocklist.forms import ItemForm, UserRegistrationForm
 from django.contrib.auth.models import User
 
+
 class ItemFormTest(TestCase):
     def test_item_form_valid_data(self):
         form = ItemForm(data={
@@ -21,11 +22,15 @@ class ItemFormTest(TestCase):
         })
         self.assertFalse(form.is_valid())
         self.assertIn('quantity', form.errors)
-        self.assertEqual(form.errors['quantity'], ['Ensure this value is greater than or equal to 0.'])
+        self.assertEqual(
+            form.errors['quantity'],
+            ['Ensure this value is greater than or equal to 0.']
+        )
 
     def test_item_form_fields(self):
         form = ItemForm()
         self.assertEqual(form._meta.fields, ['name', 'price', 'quantity'])
+
 
 class UserRegistrationFormTest(TestCase):
     def test_user_registration_form_valid_data(self):
@@ -46,11 +51,16 @@ class UserRegistrationFormTest(TestCase):
         })
         self.assertFalse(form.is_valid())
         self.assertIn('__all__', form.errors)
-        self.assertEqual(form.errors['__all__'], ['Passwords do not match'])
+        self.assertEqual(
+            form.errors['__all__'],
+            ['Passwords do not match']
+        )
 
     def test_user_registration_form_fields(self):
         form = UserRegistrationForm()
-        self.assertEqual(form._meta.fields, ['username', 'email', 'password'])
+        self.assertEqual(
+            form._meta.fields, ['username', 'email', 'password']
+        )
 
 
 

@@ -7,7 +7,7 @@
 <div class="content mt-5">
   <h3>Items List</h3>
   <div>
-    <!-- Display messages -->
+    <!-- Display messages for errors or success -->
     {% if messages %}
     <div class="col-12">
       {% for message in messages %}
@@ -24,6 +24,7 @@
     </div>
     {% endif %}
 
+    <!-- Display the list of items if available -->
     {% if items %}
     <div class="table-responsive">
       <table class="table align-middle mb-0 bg-white">
@@ -33,12 +34,14 @@
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
             <th scope="col">User</th>
+            <!-- Show actions column only if the user is a staff member -->
             {% if user.is_staff %}
             <th scope="col" colspan="2" class="text-center">Actions</th>
             {% endif %}
           </tr>
         </thead>
         <tbody>
+          <!-- Loop through each item and display its details -->
           {% for item in items %}
           <tr>
             <td class="nameColumn">
@@ -49,12 +52,14 @@
             <td>&euro;{{ item.price }}</td>
             <td class="text-center">{{ item.quantity }}</td>
             <td>
+              <!-- Display the username of the user who added the item -->
               {% if item.added_by %}
               {{ item.added_by.username }}
               {% else %}
               Unknown
               {% endif %}
             </td>
+            <!-- Show edit and delete options only if the user is a staff member -->
             {% if user.is_staff %}
             <td>
               <a href="{% url 'edit_item' item.id %}" class="btn btn-link btn-sm btn-rounded">Edit</a>
@@ -69,9 +74,11 @@
       </table>
     </div>
     {% else %}
+    <!-- Display a message if no items are available -->
     <p>No items available</p>
     {% endif %}
 
+    <!-- Link to add a new item -->
     <div class="mt-4">
       <a href="{% url 'add_item' %}" class="btn btn-default">Add an Item</a>
     </div>
