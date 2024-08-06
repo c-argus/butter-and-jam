@@ -157,7 +157,7 @@ Once Django is installed, you can create your new Django project. Execute the fo
 
 ### NEON 
 1. Install Neon:
-```pip install neon```
+```pip3 install neon```
 
 
 2. Setup Neon:
@@ -167,20 +167,18 @@ Configure your settings to connect to your env.py file which will hold Neon's sy
 ```import os
 if os.path.isfile('env.py'):
     import env
-```
 
 * env.py
 ```import os
 os.environ['DATABASE_URL'] = '<Database-URL>'
 os.environ['SECRET_KEY'] = '<create_your_secret_key>'
-```
 
 ### Whitenoise
 Whitenoise is a library that helps serve static files in your Django application. 
 It allows your web application to handle static files (like CSS, JavaScript, and images) efficiently without needing a separate web server.
 
 * To install Whitenoise:
-```pip install whitenoise```
+```pip3 install whitenoise```
 
 * To configure Whitenoise:
 Add 'whitenoise.middleware.WhiteNoiseMiddleware' to the MIDDLEWARE array in your settings.py file:
@@ -188,12 +186,10 @@ Add 'whitenoise.middleware.WhiteNoiseMiddleware' to the MIDDLEWARE array in your
     # Other middleware classes
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
-```
 
 * Set up static file handling in settings.py:
 ```STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-```
 
 * Final steps:
 
