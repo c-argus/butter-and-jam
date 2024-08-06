@@ -157,55 +157,57 @@ Once Django is installed, you can create your new Django project. Execute the fo
 
 ### NEON 
 1. Install Neon:
-pip install neon
+```pip install neon```
 
 
 2. Setup Neon:
 Configure your settings to connect to your env.py file which will hold Neon's syntax for environment-based configuration.
 
 * settings.py
-import os
-
+```import os
 if os.path.isfile('env.py'):
     import env
+```
 
 * env.py
-import os
-
+```import os
 os.environ['DATABASE_URL'] = '<Database-URL>'
 os.environ['SECRET_KEY'] = '<create_your_secret_key>'
+```
 
 ### Whitenoise
 Whitenoise is a library that helps serve static files in your Django application. 
 It allows your web application to handle static files (like CSS, JavaScript, and images) efficiently without needing a separate web server.
 
 * To install Whitenoise:
-pip install whitenoise
+```pip install whitenoise```
 
 * To configure Whitenoise:
 Add 'whitenoise.middleware.WhiteNoiseMiddleware' to the MIDDLEWARE array in your settings.py file:
-MIDDLEWARE = [
+```MIDDLEWARE = [
     # Other middleware classes
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+```
 
 * Set up static file handling in settings.py:
-STATIC_URL = '/static/'
+```STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+```
 
 * Final steps:
 
 * Collect static files:
 This command gathers all static files from your apps and places them in the directory specified by STATIC_ROOT.
-python manage.py collectstatic
+```python manage.py collectstatic```
 
 * Run migrations:
 This command applies any database migrations.
-python manage.py migrate
+```python manage.py migrate```
 
 * Launch the Django development server:
 This command starts the development server so you can see your changes.
-python manage.py runserver
+```python manage.py runserver```
 
 
 
