@@ -186,6 +186,7 @@ It allows your web application to handle static files (like CSS, JavaScript, and
 
 * To configure Whitenoise:
 Add 'whitenoise.middleware.WhiteNoiseMiddleware' to the MIDDLEWARE array in your settings.py file:
+
 ```MIDDLEWARE = [
     # Other middleware classes
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -193,6 +194,7 @@ Add 'whitenoise.middleware.WhiteNoiseMiddleware' to the MIDDLEWARE array in your
 ```
 
 * Set up static file handling in settings.py:
+
 ```STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 ```
