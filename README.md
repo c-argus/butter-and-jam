@@ -45,7 +45,7 @@ The project is a coffee shop stocklist application. Utilizing Django, JavaScript
     * [Notifications Page](#notifications-page)
 * [Features Left to Implement](#features-left-to-implement)
 * [Testing and Validation](#testing-and-validation)
-* [Bugs]
+* [Bugs](#bugs)
 * [Credits]
 * [Acknowledgements]
 
@@ -400,6 +400,22 @@ This tool checks the code against PEP8 standards to ensure readability and maint
 ![PEPtestviews](static/images/PEPtestviews.png)
 
 *By using these tools and validators, I ensured that the project adheres to web standards, follows best practices, and maintains high-quality code.*
+
+## Bugs
+***Dangerous Site Warning***
+Users may see a "Dangerous Site" warning when visiting the deployed app using Google Chrome, indicating potential security risks. 
+This warning page suggests that the site might trick users into installing malicious software or revealing sensitive information like passwords or credit card numbers.
+
+![Dangerous](static/images/Dangerous.png)
+
+Users can proceed by clicking on "Details" and then "Proceed anyway" or similar options, depending on the browser. 
+
+**Additional Information:**
+I sought help from Slack and tutor support, and they couldn't find anything wrong with my code. 
+This issue only occurs in Google Chrome. You can see the website by clicking "Details" and "Proceed anyway."
+I am actively working on resolving this bug and will provide updates accordingly.
+
+
 
 
 
