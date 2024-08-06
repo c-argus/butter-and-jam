@@ -46,8 +46,7 @@ The project is a coffee shop stocklist application. Utilizing Django, JavaScript
 * [Features Left to Implement](#features-left-to-implement)
 * [Testing and Validation](#testing-and-validation)
 * [Bugs](#bugs)
-* [Credits]
-* [Acknowledgements]
+* [Acknowledgements](#acknowledgements)
 
 ## User Stories
 ### User Login
@@ -113,6 +112,9 @@ Django served as the primary Python framework for developing this project.
 
 * [Bootstrap](https://getbootstrap.com/)
 Bootstrap was employed to manage the general layout and spacing of the website.
+
+* [MDBootstrap](https://mdbootstrap.com/)
+MDBootstrap was utilized to design the templates for the login page and the navbar. 
 
 * [Neon](https://neon.tech/)
 Neon was utilized for the production database.
@@ -415,6 +417,9 @@ I sought help from Slack and tutor support, and they couldn't find anything wron
 This issue only occurs in Google Chrome. You can see the website by clicking "Details" and "Proceed anyway."
 I am actively working on resolving this bug and will provide updates accordingly.
 
+## Acknowledgements
+* Thank you to my new mentor Rory Sheridan for the amazing support and tips.
+* Thank you to my fiance and friends that helped me in the hard moments throughout the project.
 
 
 
