@@ -46,6 +46,8 @@ SITE_ID = 1
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'home'
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 # Application definition
 
 INSTALLED_APPS = [

@@ -36,6 +36,7 @@ The project is a coffee shop stocklist application. Utilizing Django, JavaScript
     * [Django](#django)
     * [NEON](#neon)
     * [Whitenoise](#whitenoise)
+    * [Deployment]
 * [Testing]
 * [Bugs]
 * [Credits]
@@ -188,6 +189,7 @@ It allows your web application to handle static files (like CSS, JavaScript, and
 Add 'whitenoise.middleware.WhiteNoiseMiddleware' to the MIDDLEWARE array in your settings.py file:
 
 ```MIDDLEWARE = [
+
     # Other middleware classes
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
@@ -196,6 +198,7 @@ Add 'whitenoise.middleware.WhiteNoiseMiddleware' to the MIDDLEWARE array in your
 * Set up static file handling in settings.py:
 
 ```STATIC_URL = '/static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 ```
 
@@ -212,6 +215,8 @@ This command applies any database migrations.
 * Launch the Django development server:
 This command starts the development server so you can see your changes.
 ```python manage.py runserver```
+
+### Deployment
 
 
 
