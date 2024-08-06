@@ -418,7 +418,7 @@ This issue only occurs in Google Chrome. You can see the website by clicking "De
 I am actively working on resolving this bug and will provide updates accordingly.
 
 ## Acknowledgements
-* Thank you to my new mentor Rory Sheridan for the amazing support and tips.
+* Thank you to my mentor Rory Sheridan for the amazing support and tips.
 * Thank you to my fiance and friends that helped me in the hard moments throughout the project.
 
 
