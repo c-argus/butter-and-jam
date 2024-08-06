@@ -28,11 +28,12 @@ The project is a coffee shop stocklist application. Utilizing Django, JavaScript
     *[Add](#wireframe-of-the-add-new-item-page)
     *[Edit](#wireframe-of-the-edit-item-page)
     *[Notifications](#wireframe-of-the-notifications-page)
-* [Flow Chart Overview]
-* [Features]
-* [Features Left to Implement]
-* [Testing]
+* [Flow Chart Overview](#flowchart-overview)
+* [Technologies Used](#technologies-used)
+    *[Languages Used](#languages-used)
+    *[Frameworks and Tools Utilized](#frameworks-and-tools-utilized)
 * [Deployment]
+* [Testing]
 * [Bugs]
 * [Credits]
 * [Acknowledgements]
@@ -86,6 +87,56 @@ The chart was designed to provide a clear understanding of user interactions and
 Distinguishing between general staff and managerial roles.
 This structure aims to streamline navigation and enhance user experience while maintaining security and role-specific access control.
 ![Flowchart](static/images/Flowchart.png)
+
+## Technologies Used
+ 
+### Languages Used
+* [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML)
+* [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors)
+* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [Python](https://developer.mozilla.org/en-US/docs/Glossary/Python)
+
+### Frameworks and Tools Utilized
+* [Django](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django)
+Django served as the primary Python framework for developing this project.
+
+* [Bootstrap](https://getbootstrap.com/)
+Bootstrap was employed to manage the general layout and spacing of the website.
+
+* [Neon](https://neon.tech/)
+Neon was utilized for the production database.
+
+* [Git](https://www.gitpod.io/)
+Version control was managed using Git, with changes being committed and pushed to GitHub through the Gitpod terminal.
+
+* [GitHub](https://github.com/)
+The project's codebase was stored on GitHub after being pushed from Git.
+
+* [Heroku](https://www.heroku.com/)
+Heroku was used for deploying the application.
+
+*[Balsamiq](https://balsamiq.com/)
+Balsamiq was used to create wireframes for the site.
+
+* [Lucidchart Flowchart](https://www.lucidchart.com/)
+Lucidchart was used to create flowchart for the site.
+
+* [Stack Overflow](https://stackoverflow.com/) and [Django Forum](https://forum.djangoproject.com/)
+Stack Overflow was frequently consulted to resolve challenging code issues.
+
+* [Nu Html Checker](https://validator.w3.org/nu/)
+Nu Html Checker was used to validate the HTML code for the site.
+
+* [W3C Validation Service](https://jigsaw.w3.org/css-validator/)
+W3C Validation Service was used to validate CSS code for the site.
+
+* [JS Hint](https://jshint.com/)
+JS Hint was used to validate JavaScript code for the site.
+
+* [CI Python Linter](https://pep8ci.herokuapp.com/)
+CI Python Linter was used to validate the Python code of the site.
+
+
 
 
 
