@@ -165,13 +165,17 @@ Configure your settings to connect to your env.py file which will hold Neon's sy
 
 * settings.py
 ```import os
+
 if os.path.isfile('env.py'):
-    import env```
+    import env
+```
 
 * env.py
 ```import os
+
 os.environ['DATABASE_URL'] = '<Database-URL>'
-os.environ['SECRET_KEY'] = '<create_your_secret_key>'```
+os.environ['SECRET_KEY'] = '<create_your_secret_key>'
+```
 
 ### Whitenoise
 Whitenoise is a library that helps serve static files in your Django application. 
@@ -185,11 +189,13 @@ Add 'whitenoise.middleware.WhiteNoiseMiddleware' to the MIDDLEWARE array in your
 ```MIDDLEWARE = [
     # Other middleware classes
     'whitenoise.middleware.WhiteNoiseMiddleware',
-]```
+]
+```
 
 * Set up static file handling in settings.py:
 ```STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')```
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+```
 
 * Final steps:
 
