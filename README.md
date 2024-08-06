@@ -21,7 +21,7 @@ The project is a coffee shop stocklist application. Utilizing Django, JavaScript
     * [View Notifications](#view-notifications)
     * [Mark Notification as Read](#mark-notification-as-read)
     * [User Logout](#user-logout)
-* [Wireframes]
+* [Wireframes](#wireframes)
 * [Flow Chart]
 * [Features]
 * [Features Left to Implement]
@@ -32,32 +32,47 @@ The project is a coffee shop stocklist application. Utilizing Django, JavaScript
 * [Acknowledgements]
 
 ## User Stories
-## User Login
+### User Login
 As a barista or manager I can log in using my username and password so that I can access my account and manage the coffee shop stock.
 
-## User Registration
+### User Registration
 As a barista or manager I can register an account with a username, email, and password so that I can access the coffee shop stock list system.
 
-## View Stock Item List
+### View Stock Item List
 As a barista or manager I can view a list of all stock items so that I can see all items at a glance.
 
-## Add New Stock Item
+### Add New Stock Item
 As a barista or manager I can add new stock items so that I can keep track of all items needed for future orders.
 
-## Edit Stock Item
+### Edit Stock Item
 As a manager I can edit stock item details so that I can update the list information as needed.
 
-## Delete Stock Item
+### Delete Stock Item
 As a manager I can delete a stock item from the list so that I can remove items that are no longer needed.
 
-## View Notifications
+### View Notifications
 As a manager I can view all notifications so that I can keep track of items that need attention.
 
-## Mark Notification as Read
+### Mark Notification as Read
 As a manager I can mark notifications as read so that I can keep track of which notifications I have already addressed.
 
-## User Logout
+### User Logout
 As a barista or manager I can log out of my account so that I can ensure my account is secure when not in use.
+
+## Wireframes
+To create the wireframes I used [Balsamic](https://balsamiq.com/). It helped me visualize the design before I started to build the website.
+#### Wireframe of the login page
+![W - Login](/workspace/butter-and-jam/static/images/W - Login.png)
+#### Wireframe of the user registration page
+![W - Register](/workspace/butter-and-jam/static/images/W - Register.png)
+#### Wireframe of the home page
+![W - Home](/workspace/butter-and-jam/static/images/W - Home.png)
+#### Wireframe of the add new item page
+![W - Add](/workspace/butter-and-jam/static/images/W - Add.png)
+#### Wireframe of the edit item page
+![W - Edit](/workspace/butter-and-jam/static/images/W - Edit.png)
+#### Wireframe of the notifications page
+![W - Notifications](/workspace/butter-and-jam/static/images/W - Notifications.png)
 
 
 
