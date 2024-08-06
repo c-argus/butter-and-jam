@@ -43,6 +43,7 @@ The project is a coffee shop stocklist application. Utilizing Django, JavaScript
     * [Home Page](#home-page)
     * [Add Item Page](#add-item-page)
     * [Notifications Page](#notifications-page)
+* [Features Left to Implement]
 * [Testing]
 * [Bugs]
 * [Credits]
@@ -210,19 +211,19 @@ It allows your web application to handle static files (like CSS, JavaScript, and
 
 *Final steps:
 
-    *Collect static files:
+*Collect static files:
     This command gathers all static files from your apps and places them in the directory specified by `STATIC_ROOT`.
     ```bash
     python manage.py collectstatic
     ```
 
-    *Run migrations:
+*Run migrations:
     This command applies any database migrations.
     ```bash
     python manage.py migrate
     ```
 
-    *Launch the Django development server:
+*Launch the Django development server:
     This command starts the development server so you can see your changes.
     ```bash
     python manage.py runserver
@@ -317,6 +318,30 @@ The notifications page displays a list of notifications related to the inventory
 
 The page dynamically displays the notifications if available, and provides feedback on their status.
 ![NotificationFeatures](static/images/FNotification.png)
+
+## Features Left to Implement
+### Password Recovery
+* Implement a feature that allows users to recover their passwords in case they forget them. This feature should include secure methods for verifying user identity and resetting the password.
+    * Priority: High
+    * Status: Not Started
+
+### Enable Purchase Order Generation
+* Develop functionality to allow users to generate and manage purchase orders. 
+This should include the ability to create new purchase orders, track the status of existing orders, and integrate with inventory management.
+    * Priority: Medium
+    * Status: Not Started
+
+### Stock Level Reporting
+* Create detailed stock level reporting features. 
+This should include real-time stock levels, historical stock data, and alerts for low stock levels.
+    * Priority: Medium
+    * Status: Not Started
+
+### Search and Filter Functionality
+* Implement comprehensive search and filter capabilities throughout the application. 
+Users should be able to search and filter data based on various criteria to easily find specific information.
+    * Priority: High
+    * Status: Not Started
 
 
 
