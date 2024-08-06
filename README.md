@@ -22,7 +22,13 @@ The project is a coffee shop stocklist application. Utilizing Django, JavaScript
     * [Mark Notification as Read](#mark-notification-as-read)
     * [User Logout](#user-logout)
 * [Wireframes](#wireframes)
-* [Flow Chart]
+    *[Login](#wireframe-of-the-login-page)
+    *[Register](#wireframe-of-the-user-registration-page)
+    *[Home](#wireframe-of-the-home-page)
+    *[Add](#wireframe-of-the-add-new-item-page)
+    *[Edit](#wireframe-of-the-edit-item-page)
+    *[Notifications](#wireframe-of-the-notifications-page)
+* [Flow Chart Overview]
 * [Features]
 * [Features Left to Implement]
 * [Testing]
@@ -73,6 +79,14 @@ To create the wireframes I used [Balsamic](https://balsamiq.com/). It helped me 
 ![Edit](static/images/Edit.png)
 #### Wireframe of the notifications page
 ![Notifications](static/images/Notifications.png)
+
+## Flowchart Overview
+The flowchart represents the navigation and functionality structure for the web application. 
+The chart was designed to provide a clear understanding of user interactions and access controls within the application. 
+Distinguishing between general staff and managerial roles.
+This structure aims to streamline navigation and enhance user experience while maintaining security and role-specific access control.
+![Flowchart](static/images/Flowchart.png)
+
 
 
 
