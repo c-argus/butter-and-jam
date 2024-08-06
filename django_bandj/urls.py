@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from stocklist import views
 from django.contrib.auth import views as auth_views
+from stocklist import views
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -29,13 +29,37 @@ urlpatterns = [
     path('item/<int:item_id>/edit/', views.edit_item, name='edit_item'),
     path('item/<int:item_id>/delete/', views.delete_item, name='delete_item'),
     path('notifications/', views.notifications, name='notifications'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='stocklist/logout.html'), name='logout'),
+    path(
+        'logout/',
+        auth_views.LogoutView.as_view(template_name='stocklist/logout.html'),
+        name='logout'
+    ),
     path('login/', views.custom_login, name='login'),
-    path('notifications/mark_as_read/<int:notification_id>/', views.mark_notification_as_read, name='mark_notification_as_read'),
-    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path(
+        'notifications/mark_as_read/<int:notification_id>/',
+        views.mark_notification_as_read,
+        name='mark_notification_as_read'
+    ),
+    path(
+        'password_reset/',
+        auth_views.PasswordResetView.as_view(),
+        name='password_reset'
+    ),
+    path(
+        'password_reset/done/',
+        auth_views.PasswordResetDoneView.as_view(),
+        name='password_reset_done'
+    ),
+    path(
+        'reset/<uidb64>/<token>/',
+        auth_views.PasswordResetConfirmView.as_view(),
+        name='password_reset_confirm'
+    ),
+    path(
+        'reset/done/',
+        auth_views.PasswordResetCompleteView.as_view(),
+        name='password_reset_complete'
+    ),
 ]
 
 
