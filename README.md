@@ -1,4 +1,4 @@
-# Cabare Stocklist - Coffee Shop Stocklist Management app
+# Cabare Stocklist - Coffee Shop Stocklist app
 
 ## About
 This application is designed to streamline inventory management for coffee shops, making it easy to keep track of stock levels, manage orders, and ensure the business never run out of essential supplies.
@@ -43,8 +43,8 @@ The project is a coffee shop stocklist application. Utilizing Django, JavaScript
     * [Home Page](#home-page)
     * [Add Item Page](#add-item-page)
     * [Notifications Page](#notifications-page)
-* [Features Left to Implement]
-* [Testing]
+* [Features Left to Implement](#features-left-to-implement)
+* [Testing and Validation](#testing-and-validation)
 * [Bugs]
 * [Credits]
 * [Acknowledgements]
@@ -189,12 +189,12 @@ os.environ['SECRET_KEY'] = '<create_your_secret_key>'
 Whitenoise is a library that helps serve static files in your Django application. 
 It allows your web application to handle static files (like CSS, JavaScript, and images) efficiently without needing a separate web server.
 
-*To install Whitenoise:
+* To install Whitenoise:
     ```bash
     pip3 install whitenoise
     ```
 
-*To configure Whitenoise:
+* To configure Whitenoise:
     Add `'whitenoise.middleware.WhiteNoiseMiddleware'` to the `MIDDLEWARE` array in your `settings.py` file:
     ```python
     MIDDLEWARE = [
@@ -203,27 +203,27 @@ It allows your web application to handle static files (like CSS, JavaScript, and
     ]
     ```
 
-*Set up static file handling in `settings.py`:
+* Set up static file handling in `settings.py`:
     ```python
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     ```
 
-*Final steps:
+* Final steps:
 
-*Collect static files:
+* Collect static files:
     This command gathers all static files from your apps and places them in the directory specified by `STATIC_ROOT`.
     ```bash
     python manage.py collectstatic
     ```
 
-*Run migrations:
+* Run migrations:
     This command applies any database migrations.
     ```bash
     python manage.py migrate
     ```
 
-*Launch the Django development server:
+* Launch the Django development server:
     This command starts the development server so you can see your changes.
     ```bash
     python manage.py runserver
@@ -231,39 +231,39 @@ It allows your web application to handle static files (like CSS, JavaScript, and
 
 
 ### Deploying to Heroku
-* Create the Heroku app
+* **Create the Heroku app**
 1. Log in to your Heroku account;
 2. Click the New button in the top right corner;
 3. Choose a name for your project. This must be unique. Select the region closest to you. Confirm by clicking Create app.
 
-* Create a database
+* **Create a database**
 Code Institute recommends creating an account with ElephantSQL for database management. 
 However, ElephantSQL has announced on their homepage that they will be going offline in January 2025. 
 As a result, I created an account with [Neon](https://neon.tech/) instead.
 
-* Connecting the database to our app
+* **Connecting the database to our app**
 1. in Heroku, go to the Settings tab;
 2. Click Reveal Config Vars;
 3. Add a Config Var called DATABASE_URL. Paste your database URL in as the value.
 
-* Deploy Your App on Heroku
+* **Deploy Your App on Heroku**
 1. Navigate to the Deploy Tab
    - In your Heroku dashboard, select your app.
    - Go to the "Deploy" tab in the app's dashboard.
 
-2. Connect to GitHub
+2. **Connect to GitHub**
    - Under the "Deployment method" section, choose "GitHub".
    - Click on the "Connect to GitHub" button.
    - If prompted, authorize Heroku to access your GitHub account.
    - Search for the repository you want to deploy and click "Connect".
 
-3. Deploy Your Branch Manually
+3. **Deploy Your Branch Manually**
    - Scroll down to the "Manual deploy" section.
    - Ensure the "main" branch is selected (or choose the branch you want to deploy).
    - Click on the "Deploy Branch" button.
    - Wait for the deployment process to complete.
 
-4. Verify the Deployment
+4. **Verify the Deployment**
    - Once the app is successfully deployed, a confirmation message will appear.
    - Click on the "View" button to open your app and verify that it’s running correctly.
 
@@ -342,6 +342,65 @@ This should include real-time stock levels, historical stock data, and alerts fo
 Users should be able to search and filter data based on various criteria to easily find specific information.
     * Priority: High
     * Status: Not Started
+
+## Testing and Validation
+To ensure the quality and standards compliance of the project, the following tools and validators were used:
+
+**HTML Validation**
+To validate the HTML of the project, I used the W3C Nu HTML Checker. 
+You can validate your HTML files by entering the URL of your web pages in the tool.
+
+* [Login](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcabare-stocklist-bandj-64bab33316f2.herokuapp.com%2Flogin%2F%3Fnext%3D%2F)
+* [Register](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcabare-stocklist-bandj-64bab33316f2.herokuapp.com%2Fregister%2F)
+* [Home](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcabare-stocklist-bandj-64bab33316f2.herokuapp.com%2Fhome%2F)
+* [Add Item](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcabare-stocklist-bandj-64bab33316f2.herokuapp.com%2Fadd%2F)
+* [Edit Item](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcabare-stocklist-bandj-64bab33316f2.herokuapp.com%2Fitem%2F76%2Fedit%2F)
+* [Notifications](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcabare-stocklist-bandj-64bab33316f2.herokuapp.com%2Fnotifications%2F)
+
+**CSS Validation**
+For CSS validation, I utilized the W3C CSS Validator. 
+This tool checks for proper syntax and adherence to CSS standards. 
+
+* [Login](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fcabare-stocklist-bandj-64bab33316f2.herokuapp.com%2Flogin%2F%3Fnext%3D%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+* [Register](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fcabare-stocklist-bandj-64bab33316f2.herokuapp.com%2Fregister%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+* [Home](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fcabare-stocklist-bandj-64bab33316f2.herokuapp.com%2Fhome%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+* [Add Item](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fcabare-stocklist-bandj-64bab33316f2.herokuapp.com%2Fadd%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+* [Edit Item](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fcabare-stocklist-bandj-64bab33316f2.herokuapp.com%2Fitem%2F79%2Fedit%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+* [Notifications](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fcabare-stocklist-bandj-64bab33316f2.herokuapp.com%2Fnotifications%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+
+**Performance and Best Practices**
+To assess the performance, accessibility, best practices, and SEO of the web application, I used Google Lighthouse, available in the Chrome DevTools. 
+This tool provides comprehensive insights and recommendations for improving web performance and user experience.
+
+![LighthouseLogin](static/images/LHLogin.png)
+![LighthouseRegister](static/images/LHRegister.png)
+![LighthouseHome](static/images/LHHome.png)
+![LighthouseAdd](static/images/LHAdd.png)
+![LighthouseEdit](static/images/LHEdit.png)
+![LighthouseNotification](static/images/LHNotifications.png)
+
+**JavaScript Validation**
+For JavaScript code validation, I used JSHint. 
+This tool helps identify potential problems in JavaScript code and ensures adherence to coding standards.
+
+![JSHint1](static/images/JSHint1.png)
+![JSHint2](static/images/JSHint2.png)
+
+**Python (Django) Code Validation**
+To validate Python code, particularly for Django, I used the PEP8 online checker. 
+This tool checks the code against PEP8 standards to ensure readability and maintainability:
+
+![PEPsettings](static/images/PEPsettings.png)
+![PEPurls](static/images/PEPurls.png)
+![PEPforms](static/images/PEPforms.png)
+![PEPmodels](static/images/PEPmodels.png)
+![PEPviews](static/images/PEPviews.png)
+![PEPtestforms](static/images/PEPtestforms.png)
+![PEPtestmodels](static/images/PEPtestmodels.png)
+![PEPtestviews](static/images/PEPtestviews.png)
+
+*By using these tools and validators, I ensured that the project adheres to web standards, follows best practices, and maintains high-quality code.*
+
 
 
 
