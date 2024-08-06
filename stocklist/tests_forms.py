@@ -2,6 +2,7 @@
 
 from django.test import TestCase
 from stocklist.forms import ItemForm, UserRegistrationForm
+from django.contrib.auth.models import User
 
 class ItemFormTest(TestCase):
     def test_item_form_valid_data(self):
@@ -50,5 +51,8 @@ class UserRegistrationFormTest(TestCase):
     def test_user_registration_form_fields(self):
         form = UserRegistrationForm()
         self.assertEqual(form._meta.fields, ['username', 'email', 'password'])
+
+
+
 
 

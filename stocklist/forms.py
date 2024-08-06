@@ -14,9 +14,8 @@ class ItemForm(forms.ModelForm):
         quantity = self.cleaned_data.get('quantity')
 
         # Check if quantity is negative
-        if quantity < 0:
+        if quantity is not None and quantity < 0:
             raise forms.ValidationError('Quantity cannot be negative')
-
         return quantity
 
 class UserRegistrationForm(forms.ModelForm):
