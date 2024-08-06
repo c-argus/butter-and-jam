@@ -32,7 +32,7 @@ The project is a coffee shop stocklist application. Utilizing Django, JavaScript
 * [Technologies Used](#technologies-used)
     *[Languages Used](#languages-used)
     *[Frameworks and Tools Utilized](#frameworks-and-tools-utilized)
-* [Deployment]
+* [Setup]
 * [Testing]
 * [Bugs]
 * [Credits]
@@ -115,14 +115,14 @@ The project's codebase was stored on GitHub after being pushed from Git.
 * [Heroku](https://www.heroku.com/)
 Heroku was used for deploying the application.
 
-*[Balsamiq](https://balsamiq.com/)
+* [Balsamiq](https://balsamiq.com/)
 Balsamiq was used to create wireframes for the site.
 
 * [Lucidchart Flowchart](https://www.lucidchart.com/)
 Lucidchart was used to create flowchart for the site.
 
 * [Stack Overflow](https://stackoverflow.com/) and [Django Forum](https://forum.djangoproject.com/)
-Stack Overflow was frequently consulted to resolve challenging code issues.
+Stack Overflow and Django Forum were frequently consulted to resolve challenging code issues.
 
 * [Nu Html Checker](https://validator.w3.org/nu/)
 Nu Html Checker was used to validate the HTML code for the site.
@@ -135,6 +135,26 @@ JS Hint was used to validate JavaScript code for the site.
 
 * [CI Python Linter](https://pep8ci.herokuapp.com/)
 CI Python Linter was used to validate the Python code of the site.
+
+## Setup
+
+### Django
+1. Create Repository from Code Institute Template
+Start by creating the repository using the Code Institute template. 
+This template helps streamline the setup process by including pre-configured settings and files tailored for Code Institute projects.
+
+2. Install Django
+Next, you need to install Django. Use the following command to ensure you install a compatible version of Django:
+```pip3 install 'django<4'
+```
+This command will install the latest version of Django that is less than version 4.
+
+3. Create Django Project
+Once Django is installed, you can create your new Django project. Execute the following command to initialize your project:
+```django-admin startproject <django_bandj>
+```
+
+### NEON 
 
 
 
