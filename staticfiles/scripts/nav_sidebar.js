@@ -4,6 +4,6 @@ const navbarCollapseEl = document.querySelector('.navbar-collapse');
 navbarButtonEl.addEventListener('click', onClickNavbarButton);
 
 function onClickNavbarButton() {
-    console.log('onClickNavbarButton')
-    navbarCollapseEl.classList.toggle('show')
+    console.log('onClickNavbarButton');
+    navbarCollapseEl.classList.toggle('show');
 }
